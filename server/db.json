@@ -7,14 +7,14 @@
       "active": true,
       "products": [
         {
-          "num": 1,
-          "productName": "Шапка 1",
-          "productDesc": "Описание"
+          "id": 1,
+          "name": "Шапка 1",
+          "desc": "Описание"
         },
         {
-          "num": 2,
-          "productName": "Шапка 2",
-          "productDesc": "Описание"
+          "id": 2,
+          "name": "Шапка 2",
+          "desc": "Описание"
         }
       ]
     },
@@ -25,14 +25,14 @@
       "active": true,
       "products": [
         {
-          "num": 1,
-          "productName": "Шапка 1",
-          "productDesc": "Описание"
+          "id": 3,
+          "name": "Платья 1",
+          "desc": "Описание"
         },
         {
-          "num": 2,
-          "productName": "Шапка 2",
-          "productDesc": "Описание"
+          "id": 4,
+          "name": "Платья 2",
+          "desc": "Описание"
         }
       ]
     },
@@ -43,14 +43,14 @@
       "active": true,
       "products": [
         {
-          "num": 1,
-          "productName": "Верхняя одежда 1",
-          "productDesc": "Описание"
+          "id": 5,
+          "name": "Рюкзаки 1",
+          "desc": "Описание"
         },
         {
-          "num": 2,
-          "productName": "Верхняя одежда 2",
-          "productDesc": "Описание"
+          "id": 6,
+          "name": "Рюкзаки 2",
+          "desc": "Описание"
         }
       ]
     },
@@ -58,17 +58,17 @@
       "id": 4,
       "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Обувь",
-      "active": false,
+      "active": true,
       "products": [
         {
-          "num": 1,
-          "productName": "Верхняя одежда 1",
-          "productDesc": "Описание"
+          "id": 7,
+          "name": "Обувь 1",
+          "desc": "Описание"
         },
         {
-          "num": 2,
-          "productName": "Верхняя одежда 2",
-          "productDesc": "Описание"
+          "id": 8,
+          "name": "Обувь 2",
+          "desc": "Описание"
         }
       ]
     },
@@ -79,14 +79,14 @@
       "active": true,
       "products": [
         {
-          "num": 1,
-          "productName": "Верхняя одежда 1",
-          "productDesc": "Описание"
+          "id": 9,
+          "name": "Акссесуары 1",
+          "desc": "Описание"
         },
         {
-          "num": 2,
-          "productName": "Верхняя одежда 2",
-          "productDesc": "Описание"
+          "id": 10,
+          "name": "Акссесуары 2",
+          "desc": "Описание"
         }
       ]
     },
@@ -97,14 +97,14 @@
       "active": false,
       "products": [
         {
-          "num": 1,
-          "productName": "Верхняя одежда 1",
-          "productDesc": "Описание"
+          "id": 11,
+          "name": "Верхняя одежда 1",
+          "desc": "Описание"
         },
         {
-          "num": 2,
-          "productName": "Верхняя одежда 2",
-          "productDesc": "Описание"
+          "id": 12,
+          "name": "Верхняя одежда 2",
+          "desc": "Описание"
         }
       ]
     }

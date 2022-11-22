@@ -1,9 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import { useTheme } from '@mui/material/styles';
+import React, { useEffect, useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
-import {Box, OutlinedInput, InputLabel, MenuItem, FormControl, Select, Chip, FormHelperText } from '@mui/material';
+import {
+  Box,
+  OutlinedInput,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Chip,
+  FormHelperText,
+  ListSubheader,
+} from "@mui/material";
 
-import { useUpdateProductMutation } from '../../redux'
+import { useUpdateProductMutation } from "../../redux";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -16,7 +26,6 @@ const MenuProps = {
   },
 };
 
-
 function getStyles(name, groupName, theme) {
   return {
     fontWeight:
@@ -26,20 +35,25 @@ function getStyles(name, groupName, theme) {
   };
 }
 
-export default function MultipleSelect({ label, data, helperText, productList }) {
+export default function MultipleSelect({
+  label,
+  data,
+  helperText,
+  productList,
+}) {
   const theme = useTheme();
   const [groupName, setGroupName] = useState([]);
-  const [updateProduct] = useUpdateProductMutation()
+  const [updateProduct] = useUpdateProductMutation();
 
   const handleUpdateProduct = async (id) => {
     await updateProduct({
       id: id,
       patch: {
-        active: true
-      }
-    }).unwrap()
-  }
-   
+        active: true,
+      },
+    }).unwrap();
+  };
+
   const handleDelete = () => {
     // сделать на удаление смену Active у элементов Goods
   };
@@ -47,16 +61,16 @@ export default function MultipleSelect({ label, data, helperText, productList })
   // console.log(groupName);
 
   const handleChange = (event) => {
-    const { target: { value } } = event;
-    setGroupName(
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    const {
+      target: { value },
+    } = event;
+    setGroupName(typeof value === "string" ? value.split(",") : value);
   };
 
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="multiple-chip-label">{ label }</InputLabel>
+        <InputLabel id="multiple-chip-label">{label}</InputLabel>
 
         <Select
           labelId="multiple-chip-label"
@@ -64,32 +78,54 @@ export default function MultipleSelect({ label, data, helperText, productList })
           multiple
           value={groupName}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label={ label } />}
+          input={<OutlinedInput id="select-multiple-chip" label={label} />}
           renderValue={(selected) => (
-            
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} onDelete={handleDelete}/>
+                <Chip key={value} label={value} onDelete={handleDelete} />
               ))}
             </Box>
-
           )}
           MenuProps={MenuProps}
         >
-    
-          {data.map((product) => (
-            <MenuItem
-              key={product.id}
-              onClick={() => handleUpdateProduct(product.id)}
-              value={product.name}
-              style={getStyles(product.name, groupName, theme)}
-            >
-              {product.name}
-            </MenuItem>
-          ))}
-          
+          {productList
+            ? data.map((item, id) => {
+                console.log(item.name);
+                console.log(item.products[id]);
+
+                return (
+                  <div key={item.id}>
+                    <ListSubheader>{item.name}</ListSubheader>
+                    {item.products.map((item) => (
+                      <MenuItem
+                        key={item.id}
+                        onClick={() => handleUpdateProduct(item.id)}
+                        value={item.name}
+                        style={getStyles(item.name, groupName, theme)}
+                      >
+                        {item.name}
+                      </MenuItem>
+                    ))}
+                  </div>
+                );
+              })
+            : data.map((item) => (
+                <MenuItem
+                  key={item.id}
+                  onClick={() => handleUpdateProduct(item.id)}
+                  value={item.name}
+                  style={getStyles(item.name, groupName, theme)}
+                >
+                  {item.name}
+                </MenuItem>
+              ))}
         </Select>
-        { helperText ? <FormHelperText sx={{ mt: 2 }}>Выбрите от 1 до 50 предметов</FormHelperText> : null}
+
+        {helperText ? (
+          <FormHelperText sx={{ mt: 2 }}>
+            Выберите от 1 до 50 предметов
+          </FormHelperText>
+        ) : null}
       </FormControl>
     </div>
   );
