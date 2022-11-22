@@ -64,35 +64,32 @@ export default function FormArea() {
 
          <Grid container spacing="30">
             {data.map((product) => (
-               <Grid item xs="12" md="4" key={product.id}>
+               <Grid item xs={12} md={4} key={product.id}>
                   <Card sx={{ minWidth: 275 }}>
                      <CardContent>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        {product.name}
+                        </Typography>
 
-                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                      {product.name}
-                     </Typography>
+                        <Typography variant="h5" component="div">
+                           Название
+                        </Typography>
+                        
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                           adjective
+                        </Typography>
 
-                     <Typography variant="h5" component="div">
-                        Название
-                     </Typography>
-                     
-                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        adjective
-                     </Typography>
+                        <Typography sx={{ mb: 3 }} variant="body2">
+                           well meaning and kindly.
+                           <br />
+                           {'"a benevolent smile"'}
+                        </Typography>
 
-                     <Typography sx={{ mb: 3 }} variant="body2">
-                        well meaning and kindly.
-                        <br />
-                        {'"a benevolent smile"'}
-                     </Typography>
-
-                     <CardActions>
-                        <Button size="small">Удалить</Button>
-                     </CardActions>
-
+                        <CardActions>
+                           <Button size="small">Удалить</Button>
+                        </CardActions>
                      </CardContent>
                   </Card>
-                  
                </Grid>
             ))}
          </Grid>
