@@ -8,13 +8,15 @@
       "products": [
         {
           "id": 1,
+          "categoriesId": 1,
           "name": "Шапка 1",
-          "desc": "Описание"
+          "desc": "Описание шапки 1"
         },
         {
           "id": 2,
+          "categoriesId": 1,
           "name": "Шапка 2",
-          "desc": "Описание"
+          "desc": "Описание шапки 1"
         }
       ]
     },
@@ -22,17 +24,19 @@
       "id": 2,
       "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Платья",
-      "active": true,
+      "active": false,
       "products": [
         {
           "id": 3,
+          "categoriesId": 2,
           "name": "Платья 1",
-          "desc": "Описание"
+          "desc": "Описание платья 1"
         },
         {
           "id": 4,
+          "categoriesId": 2,
           "name": "Платья 2",
-          "desc": "Описание"
+          "desc": "Описание платья 2"
         }
       ]
     },
@@ -44,13 +48,15 @@
       "products": [
         {
           "id": 5,
+          "categoriesId": 3,
           "name": "Рюкзаки 1",
-          "desc": "Описание"
+          "desc": "Описание рюкзака 1"
         },
         {
           "id": 6,
+          "categoriesId": 3,
           "name": "Рюкзаки 2",
-          "desc": "Описание"
+          "desc": "Описание рюкзака 2"
         }
       ]
     },
@@ -58,35 +64,39 @@
       "id": 4,
       "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Обувь",
-      "active": true,
+      "active": false,
       "products": [
         {
           "id": 7,
+          "categoriesId": 4,
           "name": "Обувь 1",
-          "desc": "Описание"
+          "desc": "Описание обуви 1"
         },
         {
           "id": 8,
+          "categoriesId": 4,
           "name": "Обувь 2",
-          "desc": "Описание"
+          "desc": "Описание обуви 2"
         }
       ]
     },
     {
       "id": 5,
       "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
-      "name": "Акссесуары",
-      "active": true,
+      "name": "Аксессуары",
+      "active": false,
       "products": [
         {
           "id": 9,
-          "name": "Акссесуары 1",
-          "desc": "Описание"
+          "categoriesId": 5,
+          "name": "Аксессуара 1",
+          "desc": "Описание аксессуара 1"
         },
         {
           "id": 10,
-          "name": "Акссесуары 2",
-          "desc": "Описание"
+          "categoriesId": 5,
+          "name": "Аксессуара 2",
+          "desc": "Описание аксессуара 1"
         }
       ]
     },
@@ -98,13 +108,15 @@
       "products": [
         {
           "id": 11,
+          "categoriesId": 6,
           "name": "Верхняя одежда 1",
-          "desc": "Описание"
+          "desc": "Описание верхней одежды 1"
         },
         {
           "id": 12,
+          "categoriesId": 6,
           "name": "Верхняя одежда 2",
-          "desc": "Описание"
+          "desc": "Описание верхней одежды 2"
         }
       ]
     }
