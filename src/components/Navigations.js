@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-import {Tabs, Tab, Box} from '@mui/material';
+import { Tabs, Tab, Box, Card } from "@mui/material";
 
 import FormArea from "./form/FormArea";
 
@@ -16,20 +16,15 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
 
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -41,30 +36,45 @@ export default function Navigations() {
   };
 
   return (
-    <Box sx={{ width: '100%', marginTop: '20px' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+    <>
+      <Card
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          p: 1,
+          pb: 2,
+          mt: 3,
+          mb: 4,
+        }}
+      >
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
           <Tab label="Акции" {...a11yProps(0)} />
           <Tab label="Карточка товара" {...a11yProps(1)} />
           <Tab label="Каталог" {...a11yProps(2)} />
         </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
-         <FormArea />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-    </Box>
+      </Card>
+
+      <Card sx={{ width: "100%", marginTop: "20px" }}>
+        <TabPanel value={value} index={0}>
+          <FormArea />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          Item Two
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          Item Three
+        </TabPanel>
+      </Card>
+    </>
   );
 }
 
-
 TabPanel.propTypes = {
-   children: PropTypes.node,
-   index: PropTypes.number.isRequired,
-   value: PropTypes.number.isRequired,
- };
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};

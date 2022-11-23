@@ -8,9 +8,17 @@ import {
   CardActions,
 } from "@mui/material";
 
+import { useGetGoodsQuery } from "../../redux";
+
 export default function ProductList(productList, setProductList) {
+  const { data = [], isLoading } = useGetGoodsQuery();
+
+  if (isLoading) return <h1>Loading...</h1>;
+
   console.log("productList.productList");
   console.log(productList.productList);
+  console.log("data");
+  console.log(data);
 
   const handleDeleteItem = (product) => {
     let newArray = productList.productList.filter(function (f) {
@@ -33,7 +41,7 @@ export default function ProductList(productList, setProductList) {
                 color="text.secondary"
                 gutterBottom
               >
-                Категория
+                {data.find(1)}
               </Typography>
 
               <Typography variant="h5" component="div">
