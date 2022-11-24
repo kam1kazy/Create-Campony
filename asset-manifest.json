@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/kam1kazy/del42.git/static/css/main.61c0e92e.css",
+    "main.js": "/kam1kazy/del42.git/static/js/main.676bfb93.js",
+    "index.html": "/kam1kazy/del42.git/index.html",
+    "main.61c0e92e.css.map": "/kam1kazy/del42.git/static/css/main.61c0e92e.css.map",
+    "main.676bfb93.js.map": "/kam1kazy/del42.git/static/js/main.676bfb93.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61c0e92e.css",
+    "static/js/main.676bfb93.js"
+  ]
+}
