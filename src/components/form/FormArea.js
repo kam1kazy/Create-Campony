@@ -19,7 +19,6 @@ import CreateCompany from "./CreateCompany";
 
 export default function FormArea() {
   const { data = [], isLoading } = useGetGoodsQuery();
-  const [productList, setProductList] = useState([]);
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -78,10 +77,7 @@ export default function FormArea() {
           Товары в рекламу
         </Typography>
 
-        <ProductList
-          productList={productList}
-          setProductList={setProductList}
-        />
+        <ProductList />
       </Box>
 
       {/* Шаг третий */}

@@ -43,6 +43,9 @@ export default function SelectProducts({ label, data, helperText }) {
 
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productsReducer.goods);
+  const selectedCategories = useSelector(
+    (state) => state.selectedCategoriesReducer.categories
+  );
 
   const handleSelectItem = (item) => {
     if (!productList.includes(item)) {
@@ -75,7 +78,7 @@ export default function SelectProducts({ label, data, helperText }) {
           )}
           MenuProps={MenuProps}
         >
-          {data.map((item, id) => {
+          {selectedCategories.map((item, id) => {
             return (
               <div key={item.id}>
                 <ListSubheader>{item.name}</ListSubheader>
