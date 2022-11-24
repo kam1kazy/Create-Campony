@@ -1,6 +1,7 @@
 {
   "name": "del-42",
   "version": "0.1.0",
+  "homepage": "https://github.com/kam1kazy/del42.git",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -22,6 +23,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "server": "json-server -w server/db.json -p 3001",
@@ -49,6 +52,7 @@
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
+    "gh-pages": "^4.0.0",
     "json-server": "^0.17.1"
   }
 }

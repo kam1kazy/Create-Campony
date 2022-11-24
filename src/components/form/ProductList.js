@@ -6,60 +6,46 @@ import {
   Card,
   CardContent,
   CardActions,
+  CardHeader,
+  CardMedia,
 } from "@mui/material";
 
-import { useGetGoodsQuery } from "../../redux";
+import { useSelector } from "react-redux";
 
-export default function ProductList(productList, setProductList) {
-  const { data = [], isLoading } = useGetGoodsQuery();
-
-  if (isLoading) return <h1>Loading...</h1>;
-
-  console.log("productList.productList");
-  console.log(productList.productList);
-  console.log("data");
-  console.log(data);
-
-  const handleDeleteItem = (product) => {
-    let newArray = productList.productList.filter(function (f) {
-      return f !== product;
-    });
-    console.log("--");
-
-    console.log(setProductList);
-    console.log(newArray); // ["one", "three"]
-  };
+export default function ProductList() {
+  const productList = useSelector((state) => state.productsReducer.goods);
 
   return (
     <Grid container spacing="30">
-      {productList.productList.map((product) => (
+      {productList.map((product) => (
         <Grid item xs={12} md={4} key={product.id}>
           <Card sx={{ minWidth: 275 }}>
+            <CardHeader subheader={product.categories} />
+            <CardMedia
+              component="img"
+              height="194"
+              image={product.image}
+              alt={product.name}
+            />
             <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {data.find(1)}
-              </Typography>
-
               <Typography variant="h5" component="div">
                 {product.name}
               </Typography>
 
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
+                Номер товара: {product.id}
               </Typography>
 
-              <Typography sx={{ mb: 3 }} variant="body2">
-                well meaning and kindly.
-                <br />
+              <Typography sx={{ mb: 1 }} variant="body2">
+                {product.desc}
+              </Typography>
+
+              <Typography sx={{ mb: 2 }} variant="body2">
                 {'"a benevolent smile"'}
               </Typography>
 
               <CardActions>
-                <Button onClick={() => handleDeleteItem(product)} size="small">
+                <Button onClick={() => product} size="small">
                   Удалить
                 </Button>
               </CardActions>

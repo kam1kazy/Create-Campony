@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCategories,
+  removeCategories,
+} from "../../../redux/slice/selectedCategories";
 
 import {
   Box,
@@ -10,8 +15,6 @@ import {
   Select,
   Chip,
 } from "@mui/material";
-
-import { useUpdateProductMutation } from "../../redux";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -33,22 +36,21 @@ function getStyles(name, groupName, theme) {
   };
 }
 
-export default function SelectCategories({ label, data, selectCategories }) {
+export default function SelectCategories({ label, data }) {
   const theme = useTheme();
-  const [groupName, setGroupName] = useState(
-    selectCategories ? selectCategories : []
+  const [groupName, setGroupName] = useState([]);
+
+  const dispatch = useDispatch();
+  const selectedCategories = useSelector(
+    (state) => state.selectedCategoriesReducer.categories
   );
-  const [updateProduct] = useUpdateProductMutation();
 
-  const handleUpdateProduct = async (item, id) => {
-    const toggle = !item.active;
-
-    await updateProduct({
-      id: id,
-      patch: {
-        active: toggle,
-      },
-    }).unwrap();
+  const handleSelectItem = (item) => {
+    if (!selectedCategories.includes(item)) {
+      dispatch(addCategories({ item }));
+    } else {
+      dispatch(removeCategories({ item }));
+    }
   };
 
   const handleChange = (event) => {
@@ -81,7 +83,7 @@ export default function SelectCategories({ label, data, selectCategories }) {
           {data.map((item) => (
             <MenuItem
               key={item.id}
-              onClick={() => handleUpdateProduct(item, item.id)}
+              onClick={() => handleSelectItem(item)}
               value={item.name}
               style={getStyles(item.name, groupName, theme)}
             >

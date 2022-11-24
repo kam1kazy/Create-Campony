@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, removeProduct } from "../../../redux/slice/productsSlice";
 
 import {
   Box,
@@ -11,6 +13,8 @@ import {
   Chip,
   FormHelperText,
   ListSubheader,
+  CardMedia,
+  Typography,
 } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
@@ -33,26 +37,22 @@ function getStyles(name, groupName, theme) {
   };
 }
 
-export default function SelectProducts({
-  label,
-  data,
-  helperText,
-  productList,
-  setProductList,
-}) {
+export default function SelectProducts({ label, data, helperText }) {
   const theme = useTheme();
   const [groupName, setGroupName] = useState([]);
 
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productsReducer.goods);
+
   const handleSelectItem = (item) => {
-    console.log(item.name);
-
     if (!productList.includes(item)) {
-      setProductList([...productList, item]);
+      dispatch(addProduct({ item }));
+      setGroupName([...groupName, item.name]);
+    } else {
+      dispatch(removeProduct({ item }));
+      const arr = groupName.filter((element) => element !== item.name);
+      setGroupName(arr);
     }
-
-    setGroupName(
-      typeof item.name === "string" ? item.name.split(",") : item.name
-    );
   };
 
   return (
@@ -85,8 +85,40 @@ export default function SelectProducts({
                     onClick={() => handleSelectItem(item)}
                     value={item.name}
                     style={getStyles(item.name, groupName, theme)}
+                    sx={{ flexFlow: "row", alignItems: "flex-start" }}
                   >
-                    {item.name}
+                    <CardMedia
+                      component="img"
+                      image={item.image}
+                      alt={item.name}
+                      sx={{
+                        objectFit: "contain",
+                        maxWidth: "60px",
+                        maxHeight: "60px",
+                        mr: 2,
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        justifyContent: "space-between",
+                        display: "flex",
+                        width: "100%",
+                      }}
+                    >
+                      <Box>
+                        <Typography variant="p" sx={{ mb: 1 }}>
+                          {item.name}
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          display="block"
+                          color="text.secondary"
+                        >
+                          {item.categories}
+                        </Typography>
+                      </Box>
+                      <Typography variant="caption">№{item.id}</Typography>
+                    </Box>
                   </MenuItem>
                 ))}
               </div>

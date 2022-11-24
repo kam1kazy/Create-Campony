@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from "react";
+import React, { useState, Children } from "react";
 import {
   Button,
   Box,
@@ -9,22 +9,17 @@ import {
 } from "@mui/material";
 import { Formik, Form } from "formik";
 
-import InputField from "./InputField";
-import SelectCategories from "./SelectCategories";
-import SelectProducts from "./SelectProducts";
 import { useGetGoodsQuery } from "../../redux";
+import InputField from "./inputs/InputField";
+import SelectCategories from "./inputs/SelectCategories";
+import SelectProducts from "./inputs/SelectProducts";
+import FormButton from "./inputs/FormButton";
 import ProductList from "./ProductList";
+import CreateCompany from "./CreateCompany";
 
 export default function FormArea() {
   const { data = [], isLoading } = useGetGoodsQuery();
-  const [selectCategories, setSelectCategories] = useState([]);
   const [productList, setProductList] = useState([]);
-
-  useEffect(() => {
-    const arrSelectedGroup = data.filter((item) => item.active);
-    const arr = arrSelectedGroup.map((item) => item.name);
-    setSelectCategories(arr);
-  }, [data]);
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -47,11 +42,16 @@ export default function FormArea() {
           Дайте название новой компании
         </Typography>
 
-        <InputField required="required" name="nameCompany" label="Компания" />
+        <InputField name="nameCompany" label="Компания" type="text" />
 
         <Typography variant="h5" component="p" sx={{ mb: 2, mt: 7 }}>
           Выберите способ загрузки предметов
         </Typography>
+
+        <Box sx={{ flexFlow: "row" }} display="flex">
+          <FormButton name="Выбрать предметы" />
+          <FormButton name="Загрузить номенклатуру" />
+        </Box>
 
         <Typography variant="p" component="p" sx={{ mb: 4, maxWidth: 600 }}>
           Мы автоматически подгрузим все предметы по выбранным вами группам
@@ -66,24 +66,13 @@ export default function FormArea() {
           Выберите группу предметов которую хотите рекламировать
         </Typography>
 
-        <SelectCategories
-          selectedChip={dataSelectedGroup}
-          data={data}
-          selectCategories={selectCategories}
-          label="Группа предметов"
-        />
+        <SelectCategories data={data} label="Группа предметов" />
 
         <Typography variant="h5" component="p" sx={{ mb: 2, mt: 4 }}>
           Выберите предметы из группы
         </Typography>
 
-        <SelectProducts
-          data={dataSelectedGroup}
-          productList={productList}
-          setProductList={setProductList}
-          helperText
-          label="Предметы"
-        />
+        <SelectProducts data={dataSelectedGroup} helperText label="Предметы" />
 
         <Typography variant="h5" component="p" sx={{ mb: 2, mt: 4 }}>
           Товары в рекламу
@@ -97,9 +86,7 @@ export default function FormArea() {
 
       {/* Шаг третий */}
       <Box label="Подтверждение">
-        <Typography variant="h5" component="p" sx={{ mb: 4 }}>
-          Последний шаг
-        </Typography>
+        <CreateCompany />
       </Box>
     </FormikStepper>
   );

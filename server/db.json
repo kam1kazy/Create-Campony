@@ -2,121 +2,151 @@
   "goods": [
     {
       "id": 1,
-      "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Шапки",
-      "active": true,
+      "active": false,
       "products": [
         {
           "id": 1,
           "categoriesId": 1,
+          "active": false,
+          "categories": "Шапки",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Шапка 1",
-          "desc": "Описание шапки 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! шапки 1"
         },
         {
           "id": 2,
           "categoriesId": 1,
+          "active": false,
+          "categories": "Шапки",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Шапка 2",
-          "desc": "Описание шапки 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! шапки 1"
         }
       ]
     },
     {
       "id": 2,
-      "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Платья",
       "active": false,
       "products": [
         {
           "id": 3,
           "categoriesId": 2,
+          "active": false,
+          "categories": "Платья",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Платья 1",
-          "desc": "Описание платья 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! платья 1"
         },
         {
           "id": 4,
           "categoriesId": 2,
+          "active": false,
+          "categories": "Платья",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Платья 2",
-          "desc": "Описание платья 2"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! платья 2"
         }
       ]
     },
     {
       "id": 3,
-      "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Рюкзаки",
-      "active": true,
+      "active": false,
       "products": [
         {
           "id": 5,
           "categoriesId": 3,
-          "name": "Рюкзаки 1",
-          "desc": "Описание рюкзака 1"
+          "active": false,
+          "categories": "Сумки",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
+          "name": "Рюкзак 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! рюкзака 1"
         },
         {
           "id": 6,
           "categoriesId": 3,
-          "name": "Рюкзаки 2",
-          "desc": "Описание рюкзака 2"
+          "active": false,
+          "categories": "Сумки",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
+          "name": "Рюкзак 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! рюкзака 2"
         }
       ]
     },
     {
       "id": 4,
-      "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Обувь",
       "active": false,
       "products": [
         {
           "id": 7,
           "categoriesId": 4,
+          "active": false,
+          "categories": "Обувь",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Обувь 1",
-          "desc": "Описание обуви 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! обуви 1"
         },
         {
           "id": 8,
           "categoriesId": 4,
+          "active": false,
+          "categories": "Обувь",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Обувь 2",
-          "desc": "Описание обуви 2"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! обуви 2"
         }
       ]
     },
     {
       "id": 5,
-      "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Аксессуары",
       "active": false,
       "products": [
         {
           "id": 9,
           "categoriesId": 5,
+          "active": false,
+          "categories": "Аксессуары",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Аксессуара 1",
-          "desc": "Описание аксессуара 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! аксессуара 1"
         },
         {
           "id": 10,
           "categoriesId": 5,
+          "active": false,
+          "categories": "Аксессуары",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Аксессуара 2",
-          "desc": "Описание аксессуара 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! аксессуара 1"
         }
       ]
     },
     {
       "id": 6,
-      "imageUrl": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
       "name": "Верхняя одежда",
       "active": false,
       "products": [
         {
           "id": 11,
           "categoriesId": 6,
+          "active": false,
+          "categories": "Одежда",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Верхняя одежда 1",
-          "desc": "Описание верхней одежды 1"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! верхней одежды 1"
         },
         {
           "id": 12,
           "categoriesId": 6,
+          "active": false,
+          "categories": "Одежда",
+          "image": "https://thumbs.dreamstime.com/b/значок-белого-счастливого-emoji-улыбки-плоский-на-белой-серой-148034623.jpg",
           "name": "Верхняя одежда 2",
-          "desc": "Описание верхней одежды 2"
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! верхней одежды 2"
         }
       ]
     }
