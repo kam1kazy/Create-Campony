@@ -1,16 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-import 'reset-css';
+import "reset-css";
+import "./fonts/fonts.css";
 
-import { Provider } from 'react-redux';
-import { store } from './redux';
+import { Provider } from "react-redux";
+import { store } from "./redux";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./fonts/index";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ThemeProvider>
 );

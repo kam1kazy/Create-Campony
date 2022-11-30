@@ -3,6 +3,7 @@ import { goodsApi } from "./goodsApi";
 import productsSlice from "./slice/productsSlice";
 import companyNameSlice from "./slice/companyNameSlice";
 import selectedCategories from "./slice/selectedCategories";
+import stepCount from "./slice/stepCount";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     productsReducer: productsSlice,
     companyNameReducer: companyNameSlice,
     selectedCategoriesReducer: selectedCategories,
+    stepCountReducer: stepCount,
   },
   middleware: (getDefaultMiddlware) =>
     getDefaultMiddlware().concat(goodsApi.middleware),

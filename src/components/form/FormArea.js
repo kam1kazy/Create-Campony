@@ -1,4 +1,4 @@
-import React, { useState, Children } from "react";
+import React, { useState, Children, useEffect } from "react";
 import {
   Button,
   Box,
@@ -8,12 +8,15 @@ import {
   StepLabel,
 } from "@mui/material";
 import { Formik, Form } from "formik";
-
 import { useGetGoodsQuery } from "../../redux";
+import { useSelector, useDispatch } from "react-redux";
+import { nextStep, lastStep } from "../../redux/slice/stepCount";
+
 import InputField from "./inputs/InputField";
 import SelectCategories from "./inputs/SelectCategories";
 import SelectProducts from "./inputs/SelectProducts";
 import FormButton from "./inputs/FormButton";
+
 import ProductList from "./ProductList";
 import CreateCompany from "./CreateCompany";
 
@@ -22,6 +25,8 @@ export default function FormArea() {
 
   if (isLoading) return <h1>Loading...</h1>;
 
+  const companyName =
+    useSelector((state) => state.companyNameReducer.name).length > 0;
   const dataSelectedGroup = data.filter((item) => item.active);
 
   return (
@@ -34,6 +39,7 @@ export default function FormArea() {
         description: "",
       }}
       onSubmit={() => {}}
+      test="test"
     >
       {/* Шаг первый */}
       <Box label="Создание компании">
@@ -48,11 +54,11 @@ export default function FormArea() {
         </Typography>
 
         <Box sx={{ flexFlow: "row" }} display="flex">
-          <FormButton name="Выбрать предметы" />
-          <FormButton name="Загрузить номенклатуру" />
+          <FormButton name="Выбрать предметы" nextStepActive />
+          <FormButton name="Загрузить номенклатуру" disabled={!companyName} />
         </Box>
 
-        <Typography variant="p" component="p" sx={{ mb: 4, maxWidth: 600 }}>
+        <Typography sx={{ mb: 4, maxWidth: 600 }}>
           Мы автоматически подгрузим все предметы по выбранным вами группам
           предметов или вы можете загрузить свой Excel файл с номенклатурами
           которые подойдут под эти группы предметов
@@ -93,6 +99,9 @@ export function FormikStepper({ children, ...props }) {
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step];
 
+  const stepCount = useSelector((state) => state.stepCountReducer.name);
+  console.log("step: " + step + ", stepCount: " + stepCount);
+
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
@@ -131,15 +140,23 @@ export function FormikStepper({ children, ...props }) {
           }}
         >
           {step > 0 ? (
-            <Button onClick={() => setStep((s) => s - 1)} variant="contained">
-              {" "}
-              Назад{" "}
+            <>
+              <Button type="submit" variant="contained">
+                {" "}
+                {isLastStep() ? "Отправить" : "Дальше"}{" "}
+              </Button>
+
+              <Button onClick={() => setStep((s) => s - 1)} variant="contained">
+                {" "}
+                Назад{" "}
+              </Button>
+            </>
+          ) : null}{" "}
+          {isLastStep() ? (
+            <Button type="submit" variant="contained">
+              Отправить
             </Button>
-          ) : null}
-          <Button type="submit" variant="contained">
-            {" "}
-            {isLastStep() ? "Отправить" : "Дальше"}{" "}
-          </Button>
+          ) : null}{" "}
         </Box>
       </Form>
     </Formik>
