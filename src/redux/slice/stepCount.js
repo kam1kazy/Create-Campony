@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const stepCount = createSlice({
   name: "Step",
   initialState: {
-    step: null,
+    step: 0,
   },
   reducers: {
     nextStep(state, action) {
-      console.log(action.payload);
-      state.step = action.payload;
+      state.step = state.step + 1;
+      console.log(state.step);
     },
     lastStep(state, action) {
       state.step = state.step - 1;

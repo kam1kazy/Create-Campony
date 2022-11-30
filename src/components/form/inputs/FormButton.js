@@ -16,7 +16,7 @@ export default function FormButtons({ name, disabled, nextStepActive }) {
       <Button
         variant="outlined"
         disabled={disabled}
-        onClick={nextStepActive ? () => handleNextStep() : null}
+        onClick={nextStepActive ? handleNextStep : null}
       >
         {name}
       </Button>
