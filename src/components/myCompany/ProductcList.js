@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Button,
   Typography,
@@ -8,21 +8,21 @@ import {
   CardActions,
   CardHeader,
   CardMedia,
-} from "@mui/material";
+} from "@mui/material"
 
-import { useSelector, useDispatch } from "react-redux";
-import { removeProduct } from "../../redux/slice/productsSlice";
+import { useSelector, useDispatch } from "react-redux"
+import { removeProduct } from "../../redux/slice/productsSlice"
 
 export default function ProductList() {
-  const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productsReducer.goods);
-  const stepCount = useSelector((state) => state.stepCountReducer.step);
+  const dispatch = useDispatch()
+  const productList = useSelector((state) => state.productsReducer.goods)
+  const stepCount = useSelector((state) => state.stepCountReducer.step)
 
   const handleDeleteItem = (product) => {
     if (!productList.includes(product.id)) {
-      dispatch(removeProduct(product));
+      dispatch(removeProduct(product))
     }
-  };
+  }
 
   return (
     <>
@@ -82,5 +82,5 @@ export default function ProductList() {
         ))}
       </Grid>
     </>
-  );
+  )
 }

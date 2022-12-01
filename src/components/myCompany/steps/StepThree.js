@@ -1,14 +1,14 @@
-import React from "react";
-import { Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import ProductList from "../ProductcList";
+import React from "react"
+import { Typography } from "@mui/material"
+import { useSelector } from "react-redux"
+import ProductList from "../ProductcList"
 
 export default function StepThree() {
-  const companyName = useSelector((state) => state.companyNameReducer.name);
+  const companyName = useSelector((state) => state.companyNameReducer.name)
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
-  );
-  const splitCategories = selectedCategories.map((item) => item.name);
+  )
+  const splitCategories = selectedCategories.map((item) => item.name)
 
   return (
     <>
@@ -38,5 +38,5 @@ export default function StepThree() {
 
       <ProductList />
     </>
-  );
+  )
 }

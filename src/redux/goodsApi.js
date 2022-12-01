@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const goodsApi = createApi({
   reducerPath: "goodsApi",
@@ -24,6 +24,6 @@ export const goodsApi = createApi({
       invalidatesTags: [{ type: "Products", id: "LIST" }],
     }),
   }),
-});
+})
 
-export const { useGetGoodsQuery, useUpdateProductMutation } = goodsApi;
+export const { useGetGoodsQuery, useUpdateProductMutation } = goodsApi

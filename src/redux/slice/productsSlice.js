@@ -16,9 +16,7 @@ const productsSlice = createSlice({
       toggledSelect.active = !toggledSelect.active;
     },
     removeProduct(state, action) {
-      state.goods = state.goods.filter(
-        (item) => item.id !== action.payload.item.id
-      );
+      state.goods = state.goods.filter((item) => item.id !== action.payload.id);
     },
   },
 });

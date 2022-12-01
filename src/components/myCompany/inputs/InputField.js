@@ -1,17 +1,17 @@
-import React from "react";
-import { ErrorMessage, Field } from "formik";
-import { TextField } from "@mui/material";
+import React from "react"
+import { ErrorMessage, Field } from "formik"
+import { TextField } from "@mui/material"
 
-import { useDispatch, useSelector } from "react-redux";
-import { changeName } from "../../../redux/slice/companyNameSlice";
+import { useDispatch, useSelector } from "react-redux"
+import { changeName } from "../../../redux/slice/companyNameSlice"
 
 export default function InputField({ name, label, type }) {
-  const dispatch = useDispatch();
-  const companyName = useSelector((state) => state.companyNameReducer.name);
+  const dispatch = useDispatch()
+  const companyName = useSelector((state) => state.companyNameReducer.name)
 
   const handleCheckInput = (e) => {
-    dispatch(changeName(e.target.value));
-  };
+    dispatch(changeName(e.target.value))
+  }
 
   return (
     <Field
@@ -25,5 +25,5 @@ export default function InputField({ name, label, type }) {
       onChange={handleCheckInput}
       helperText={<ErrorMessage name={name} />}
     />
-  );
+  )
 }

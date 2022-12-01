@@ -1,16 +1,16 @@
-import React from "react";
-import { Typography } from "@mui/material";
-import { useGetGoodsQuery } from "../../../redux";
+import React from "react"
+import { Typography } from "@mui/material"
+import { useGetGoodsQuery } from "../../../redux"
 
-import ProductList from "../ProductcList";
-import SelectCategories from "../inputs/SelectCategories";
-import SelectProducts from "../inputs/SelectProducts";
+import ProductList from "../ProductcList"
+import SelectCategories from "../inputs/SelectCategories"
+import SelectProducts from "../inputs/SelectProducts"
 
 export default function StepTwo() {
-  const { data = [], isLoading } = useGetGoodsQuery();
-  if (isLoading) return <h1>Loading...</h1>;
+  const { data = [], isLoading } = useGetGoodsQuery()
+  if (isLoading) return <h1>Loading...</h1>
 
-  const dataSelectedGroup = data.filter((item) => item.active);
+  const dataSelectedGroup = data.filter((item) => item.active)
 
   return (
     <>
@@ -32,5 +32,5 @@ export default function StepTwo() {
 
       <ProductList />
     </>
-  );
+  )
 }

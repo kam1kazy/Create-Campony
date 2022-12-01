@@ -1,13 +1,13 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import ButtonForm from "../inputs/ButtonForm";
-import ButtonTemplate from "../inputs/ButtonTemplate";
-import InputField from "../inputs/InputField";
+import React from "react"
+import { useSelector } from "react-redux"
+import ButtonForm from "../inputs/ButtonForm"
+import ButtonTemplate from "../inputs/ButtonTemplate"
+import InputField from "../inputs/InputField"
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material"
 
 export default function StepOne() {
-  const companyName = useSelector((state) => state.companyNameReducer.name);
+  const companyName = useSelector((state) => state.companyNameReducer.name)
 
   return (
     <>
@@ -45,5 +45,5 @@ export default function StepOne() {
         </Box>
       </Box>
     </>
-  );
+  )
 }

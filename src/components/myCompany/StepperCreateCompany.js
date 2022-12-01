@@ -1,16 +1,16 @@
-import React, { Children } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { nextStep, lastStep } from "../../redux/slice/stepCount";
-import { Formik, Form } from "formik";
+import React, { Children } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { nextStep, lastStep } from "../../redux/slice/stepCount"
+import { Formik, Form } from "formik"
 
-import { Button, Box, Stepper, Step, StepLabel } from "@mui/material";
+import { Button, Box, Stepper, Step, StepLabel } from "@mui/material"
 
-import StepOne from "./steps/StepOne";
-import StepTwo from "./steps/StepTwo";
-import StepThree from "./steps/StepThree";
+import StepOne from "./steps/StepOne"
+import StepTwo from "./steps/StepTwo"
+import StepThree from "./steps/StepThree"
 
 export default function FormArea() {
-  const companyName = useSelector((state) => state.companyNameReducer.name);
+  const companyName = useSelector((state) => state.companyNameReducer.name)
 
   return (
     <FormikStepper
@@ -38,18 +38,18 @@ export default function FormArea() {
         <StepThree />
       </Box>
     </FormikStepper>
-  );
+  )
 }
 
 export function FormikStepper({ children, ...props }) {
-  const childrenArray = Children.toArray(children);
-  const step = useSelector((state) => state.stepCountReducer.step);
-  const currentChild = childrenArray[step];
+  const childrenArray = Children.toArray(children)
+  const step = useSelector((state) => state.stepCountReducer.step)
+  const currentChild = childrenArray[step]
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   function isLastStep() {
-    return step === childrenArray.length - 1;
+    return step === childrenArray.length - 1
   }
 
   return (
@@ -57,9 +57,9 @@ export function FormikStepper({ children, ...props }) {
       {...props}
       onSubmit={async (value, helpers) => {
         if (isLastStep()) {
-          await props.onSubmit(value, helpers);
+          await props.onSubmit(value, helpers)
         } else {
-          dispatch(nextStep());
+          dispatch(nextStep())
         }
       }}
     >
@@ -70,7 +70,7 @@ export function FormikStepper({ children, ...props }) {
               <Step key={child.props.label}>
                 <StepLabel>{child.props.label}</StepLabel>
               </Step>
-            );
+            )
           })}
         </Stepper>
 
@@ -107,5 +107,5 @@ export function FormikStepper({ children, ...props }) {
         </Box>
       </Form>
     </Formik>
-  );
+  )
 }

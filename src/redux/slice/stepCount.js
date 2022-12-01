@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 const stepCount = createSlice({
   name: "Step",
@@ -7,14 +7,14 @@ const stepCount = createSlice({
   },
   reducers: {
     nextStep(state, action) {
-      state.step = state.step + 1;
+      state.step = state.step + 1
     },
     lastStep(state, action) {
-      state.step = state.step - 1;
+      state.step = state.step - 1
     },
   },
-});
+})
 
-export const { nextStep, lastStep } = stepCount.actions;
+export const { nextStep, lastStep } = stepCount.actions
 
-export default stepCount.reducer;
+export default stepCount.reducer

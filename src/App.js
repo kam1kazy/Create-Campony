@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import { Container } from "@mui/system";
-import Navigations from "./components/Navigations";
+import { Typography } from "@mui/material"
+import { Container } from "@mui/system"
+import Navigations from "./components/Navigations"
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Navigations />
       </Container>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

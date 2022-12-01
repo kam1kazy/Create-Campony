@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 const companyNameSlice = createSlice({
   name: "Company Name",
@@ -7,11 +7,11 @@ const companyNameSlice = createSlice({
   },
   reducers: {
     changeName(state, action) {
-      state.name = action.payload;
+      state.name = action.payload
     },
   },
-});
+})
 
-export const { changeName } = companyNameSlice.actions;
+export const { changeName } = companyNameSlice.actions
 
-export default companyNameSlice.reducer;
+export default companyNameSlice.reducer

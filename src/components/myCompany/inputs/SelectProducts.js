@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct, removeProduct } from "../../../redux/slice/productsSlice";
+import React from "react"
+import { useTheme } from "@mui/material/styles"
+import { useDispatch, useSelector } from "react-redux"
+import { addProduct, removeProduct } from "../../../redux/slice/productsSlice"
 
 import {
   Box,
@@ -15,10 +15,11 @@ import {
   ListSubheader,
   CardMedia,
   Typography,
-} from "@mui/material";
+} from "@mui/material"
+import { red } from "@mui/material/colors"
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
 const MenuProps = {
   PaperProps: {
     style: {
@@ -26,7 +27,7 @@ const MenuProps = {
       width: 450,
     },
   },
-};
+}
 
 function getStyles(name, groupName, theme) {
   return {
@@ -34,26 +35,44 @@ function getStyles(name, groupName, theme) {
       groupName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
-  };
+  }
 }
 
-export default function SelectProducts({ label, data, helperText }) {
-  const theme = useTheme();
-  const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productsReducer.goods);
+export default function SelectProducts({ label, helperText }) {
+  const theme = useTheme()
+  const dispatch = useDispatch()
+  const productList = useSelector((state) => state.productsReducer.goods)
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
-  );
+  )
 
-  const groupName = productList.map((item) => item.name);
+  const groupName = productList.map((item) => item.name)
 
   const handleSelectItem = (item) => {
     if (!productList.includes(item)) {
-      dispatch(addProduct({ item }));
+      dispatch(addProduct({ item }))
     } else {
-      dispatch(removeProduct({ item }));
+      dispatch(removeProduct(item))
     }
-  };
+  }
+
+  const selectedAllCategory = (item) => {
+    let count = 0
+
+    item.products.forEach(function (item, i, arr) {
+      if (!productList.includes(item)) {
+        dispatch(addProduct({ item }))
+      } else {
+        count = count + 1
+
+        if (arr.length === count) {
+          arr.forEach(function (item, i) {
+            dispatch(removeProduct(item))
+          })
+        }
+      }
+    })
+  }
 
   return (
     <FormControl sx={{ m: 1, width: 300 }}>
@@ -77,7 +96,18 @@ export default function SelectProducts({ label, data, helperText }) {
         {selectedCategories.map((item, id) => {
           return (
             <div key={item.id}>
-              <ListSubheader>{item.name}</ListSubheader>
+              <ListSubheader
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  cursor: "pointer",
+                }}
+                onClick={() => selectedAllCategory(item)}
+              >
+                <span>{item.name}</span>
+
+                <span>Добавить всё</span>
+              </ListSubheader>
               {item.products.map((item) => (
                 <MenuItem
                   key={item.id}
@@ -121,7 +151,7 @@ export default function SelectProducts({ label, data, helperText }) {
                 </MenuItem>
               ))}
             </div>
-          );
+          )
         })}
       </Select>
 
@@ -131,5 +161,5 @@ export default function SelectProducts({ label, data, helperText }) {
         </FormHelperText>
       ) : null}
     </FormControl>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import react from "react";
-import { useTheme } from "@mui/material/styles";
-import { useDispatch, useSelector } from "react-redux";
+import react from "react"
+import { useTheme } from "@mui/material/styles"
+import { useDispatch, useSelector } from "react-redux"
 import {
   addCategories,
   removeCategories,
-} from "../../../redux/slice/selectedCategories";
+} from "../../../redux/slice/selectedCategories"
 
 import {
   Box,
@@ -14,10 +14,10 @@ import {
   FormControl,
   Select,
   Chip,
-} from "@mui/material";
+} from "@mui/material"
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
 const MenuProps = {
   PaperProps: {
     style: {
@@ -25,7 +25,7 @@ const MenuProps = {
       width: 250,
     },
   },
-};
+}
 
 function getStyles(name, groupName, theme) {
   return {
@@ -33,24 +33,24 @@ function getStyles(name, groupName, theme) {
       groupName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
-  };
+  }
 }
 
 export default function SelectCategories({ label, data }) {
-  const theme = useTheme();
-  const dispatch = useDispatch();
+  const theme = useTheme()
+  const dispatch = useDispatch()
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
-  );
-  const groupName = selectedCategories.map((item) => item.name);
+  )
+  const groupName = selectedCategories.map((item) => item.name)
 
   const handleSelectItem = (item) => {
     if (!selectedCategories.includes(item)) {
-      dispatch(addCategories({ item }));
+      dispatch(addCategories({ item }))
     } else {
-      dispatch(removeCategories({ item }));
+      dispatch(removeCategories({ item }))
     }
-  };
+  }
 
   return (
     <div>
@@ -84,5 +84,5 @@ export default function SelectCategories({ label, data }) {
         </Select>
       </FormControl>
     </div>
-  );
+  )
 }
