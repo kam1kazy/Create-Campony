@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Tabs, Tab, Box, Card, CardContent } from "@mui/material";
 
-import FormArea from "./form/FormArea";
+import FormArea from "./myCompany/StepperCreateCompany";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

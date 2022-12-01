@@ -8,7 +8,6 @@ const stepCount = createSlice({
   reducers: {
     nextStep(state, action) {
       state.step = state.step + 1;
-      console.log(state.step);
     },
     lastStep(state, action) {
       state.step = state.step - 1;

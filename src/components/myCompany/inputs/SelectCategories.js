@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import react from "react";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -38,12 +38,11 @@ function getStyles(name, groupName, theme) {
 
 export default function SelectCategories({ label, data }) {
   const theme = useTheme();
-  const [groupName, setGroupName] = useState([]);
-
   const dispatch = useDispatch();
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
   );
+  const groupName = selectedCategories.map((item) => item.name);
 
   const handleSelectItem = (item) => {
     if (!selectedCategories.includes(item)) {
@@ -51,13 +50,6 @@ export default function SelectCategories({ label, data }) {
     } else {
       dispatch(removeCategories({ item }));
     }
-  };
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setGroupName(typeof value === "string" ? value.split(",") : value);
   };
 
   return (
@@ -69,7 +61,6 @@ export default function SelectCategories({ label, data }) {
           id="multiple-chip"
           multiple
           value={groupName}
-          onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label={label} />}
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>

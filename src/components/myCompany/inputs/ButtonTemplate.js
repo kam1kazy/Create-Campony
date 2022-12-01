@@ -4,7 +4,7 @@ import { Button, Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { nextStep } from "../../../redux/slice/stepCount";
 
-export default function FormButtons({ name, disabled, nextStepActive }) {
+export default function ButtonTemplate({ name, disabled, nextStepActive }) {
   const dispatch = useDispatch();
 
   const handleNextStep = () => {
@@ -12,9 +12,9 @@ export default function FormButtons({ name, disabled, nextStepActive }) {
   };
 
   return (
-    <Stack direction="row" spacing={2} sx={{ mt: 2, mb: 5, mr: 2 }}>
+    <Stack direction="row" sx={{ mb: 2 }}>
       <Button
-        variant="outlined"
+        variant="text"
         disabled={disabled}
         onClick={nextStepActive ? handleNextStep : null}
       >
