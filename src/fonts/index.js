@@ -1,8 +1,8 @@
-import { createTheme } from "@mui/material"
+import { createTheme } from '@mui/material'
 
 export const theme = createTheme({
   typography: {
-    fontFamily: "Montserrat",
+    fontFamily: 'Montserrat',
   },
   components: {
     MuiCssBaseline: {

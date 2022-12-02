@@ -1,16 +1,16 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import { Tabs, Tab, Box, Card, CardContent } from "@mui/material"
+import { Tabs, Tab, Box, Card, CardContent } from '@mui/material'
 
-import StepperCreateCompany from "./myCompany/StepperCreateCompany"
+import StepperCreateCompany from './myCompany/StepperCreateCompany'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -24,7 +24,7 @@ function TabPanel(props) {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   }
 }
 
@@ -37,25 +37,25 @@ export default function Navigations() {
 
   return (
     <>
-      <Card variant="outlined" sx={{ mt: 4 }}>
+      <Card variant='outlined' sx={{ mt: 4 }}>
         <CardContent>
-          <Box sx={{ width: "100%", marginBottom: "10px", marginTop: "10px" }}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Box sx={{ width: '100%', marginBottom: '10px', marginTop: '10px' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs
                 value={value}
                 onChange={handleChange}
-                aria-label="basic tabs example"
+                aria-label='basic tabs example'
               >
-                <Tab label="Акции" {...a11yProps(0)} />
-                <Tab label="Карточка товара" {...a11yProps(1)} />
-                <Tab label="Каталог" {...a11yProps(2)} />
+                <Tab label='Акции' {...a11yProps(0)} />
+                <Tab label='Карточка товара' {...a11yProps(1)} />
+                <Tab label='Каталог' {...a11yProps(2)} />
               </Tabs>
             </Box>
           </Box>
         </CardContent>
       </Card>
 
-      <Card variant="outlined" sx={{ mt: 4, mb: 8 }}>
+      <Card variant='outlined' sx={{ mt: 4, mb: 8 }}>
         <CardContent>
           <TabPanel value={value} index={0}>
             <StepperCreateCompany />

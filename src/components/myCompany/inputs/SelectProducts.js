@@ -1,7 +1,7 @@
-import React from "react"
-import { useTheme, createTheme } from "@mui/material/styles"
-import { useDispatch, useSelector } from "react-redux"
-import { addProduct, removeProduct } from "../../../redux/slice/productsSlice"
+import React from 'react'
+import { useTheme, createTheme } from '@mui/material/styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProduct, removeProduct } from '../../../redux/slice/productsSlice'
 
 import {
   Box,
@@ -15,7 +15,7 @@ import {
   ListSubheader,
   CardMedia,
   Typography,
-} from "@mui/material"
+} from '@mui/material'
 
 const ITEM_HEIGHT = 48
 const MenuProps = {
@@ -31,7 +31,7 @@ const MenuProps = {
 function getStyles(name, groupName, theme) {
   return {
     backgroundColor:
-      groupName.indexOf(name) === -1 ? null : "rgba(25, 118, 210, 0.08)",
+      groupName.indexOf(name) === -1 ? null : 'rgba(25, 118, 210, 0.08)',
   }
 }
 
@@ -73,16 +73,16 @@ export default function SelectProducts({ label, helperText }) {
 
   return (
     <FormControl sx={{ m: 1, width: 300 }}>
-      <InputLabel id="multiple-chip-label">{label}</InputLabel>
+      <InputLabel id='multiple-chip-label'>{label}</InputLabel>
 
       <Select
-        labelId="multiple-chip-label"
-        id="multiple-chip"
+        labelId='multiple-chip-label'
+        id='multiple-chip'
         multiple
         value={groupName}
-        input={<OutlinedInput id="select-multiple-chip" label={label} />}
+        input={<OutlinedInput id='select-multiple-chip' label={label} />}
         renderValue={(selected) => (
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
             {groupName.map((value) => (
               <Chip key={value} label={value} />
             ))}
@@ -114,18 +114,18 @@ export default function SelectProducts({ label, helperText }) {
             >
               <ListSubheader
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  cursor: "pointer",
-                  backgroundColor: "#fcfcfc",
-                  "&:hover": { backgroundColor: "#f2f2f2" },
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  cursor: 'pointer',
+                  backgroundColor: '#fcfcfc',
+                  '&:hover': { backgroundColor: '#f2f2f2' },
                   mb: 2,
                 }}
                 onClick={() => selectedAllCategory(item)}
               >
                 <span>{item.name}</span>
 
-                <span>{boolean ? "Удалить всё" : "Добавить всё"}</span>
+                <span>{boolean ? 'Удалить всё' : 'Добавить всё'}</span>
               </ListSubheader>
               {item.products.map((item) => (
                 <MenuItem
@@ -134,41 +134,41 @@ export default function SelectProducts({ label, helperText }) {
                   value={item.name}
                   style={getStyles(item.name, groupName, theme)}
                   sx={{
-                    flexFlow: "row",
-                    alignItems: "flex-start",
+                    flexFlow: 'row',
+                    alignItems: 'flex-start',
                   }}
                 >
                   <CardMedia
-                    component="img"
+                    component='img'
                     image={item.image}
                     alt={item.name}
                     sx={{
-                      objectFit: "contain",
-                      maxWidth: "60px",
-                      maxHeight: "60px",
+                      objectFit: 'contain',
+                      maxWidth: '60px',
+                      maxHeight: '60px',
                       mr: 2,
                     }}
                   />
                   <Box
                     sx={{
-                      justifyContent: "space-between",
-                      display: "flex",
-                      width: "100%",
+                      justifyContent: 'space-between',
+                      display: 'flex',
+                      width: '100%',
                     }}
                   >
                     <Box>
-                      <Typography variant="p" sx={{ mb: 1 }}>
+                      <Typography variant='p' sx={{ mb: 1 }}>
                         {item.name}
                       </Typography>
                       <Typography
-                        variant="caption"
-                        display="block"
-                        color="text.secondary"
+                        variant='caption'
+                        display='block'
+                        color='text.secondary'
                       >
                         {item.categories}
                       </Typography>
                     </Box>
-                    <Typography variant="caption">№{item.id}</Typography>
+                    <Typography variant='caption'>№{item.id}</Typography>
                   </Box>
                 </MenuItem>
               ))}

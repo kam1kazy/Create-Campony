@@ -1,13 +1,13 @@
-import React, { Children } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { nextStep, lastStep } from "../../redux/slice/stepCount"
-import { Formik, Form } from "formik"
+import React, { Children } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { nextStep, lastStep } from '../../redux/slice/stepCount'
+import { Formik, Form } from 'formik'
 
-import { Button, Box, Stepper, Step, StepLabel } from "@mui/material"
+import { Button, Box, Stepper, Step, StepLabel } from '@mui/material'
 
-import StepOne from "./steps/StepOne"
-import StepTwo from "./steps/StepTwo"
-import StepThree from "./steps/StepThree"
+import StepOne from './steps/StepOne'
+import StepTwo from './steps/StepTwo'
+import StepThree from './steps/StepThree'
 
 export default function StepperCreateCompany() {
   const companyName = useSelector((state) => state.companyNameReducer.name)
@@ -15,26 +15,26 @@ export default function StepperCreateCompany() {
   return (
     <FormikStepper
       initialValues={{
-        firsName: "",
-        lastNme: "",
-        booleanField: "",
-        numberField: "",
-        description: "",
+        firsName: '',
+        lastNme: '',
+        booleanField: '',
+        numberField: '',
+        description: '',
       }}
       onSubmit={() => {}}
     >
       {/* Шаг первый */}
-      <Box label="Создание компании">
+      <Box label='Создание компании'>
         <StepOne />
       </Box>
 
       {/* Шаг второй */}
-      <Box label="Выбор товаров">
+      <Box label='Выбор товаров'>
         <StepTwo />
       </Box>
 
       {/* Шаг третий */}
-      <Box label="Подтверждение">
+      <Box label='Подтверждение'>
         <StepThree />
       </Box>
     </FormikStepper>
@@ -63,7 +63,7 @@ export function FormikStepper({ children, ...props }) {
         }
       }}
     >
-      <Form autoComplete="off">
+      <Form autoComplete='off'>
         <Stepper activeStep={step} sx={{ mt: 0, mb: 5 }}>
           {childrenArray.map((child) => {
             return (
@@ -78,32 +78,32 @@ export function FormikStepper({ children, ...props }) {
 
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "row",
+            display: 'flex',
+            flexDirection: 'row',
             pt: 2,
-            justifyContent: "space-between",
+            justifyContent: 'space-between',
             mt: 4,
           }}
         >
           {step > 0 ? (
             <>
-              {" "}
-              <Button onClick={() => dispatch(lastStep())} variant="contained">
-                {" "}
-                Назад{" "}
+              {' '}
+              <Button onClick={() => dispatch(lastStep())} variant='contained'>
+                {' '}
+                Назад{' '}
               </Button>
               {!isLastStep() ? (
-                <Button type="submit" variant="contained">
+                <Button type='submit' variant='contained'>
                   Дальше
                 </Button>
-              ) : null}{" "}
+              ) : null}{' '}
             </>
-          ) : null}{" "}
+          ) : null}{' '}
           {isLastStep() ? (
-            <Button type="submit" variant="contained">
+            <Button type='submit' variant='contained'>
               Отправить
             </Button>
-          ) : null}{" "}
+          ) : null}{' '}
         </Box>
       </Form>
     </Formik>

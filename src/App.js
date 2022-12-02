@@ -1,15 +1,15 @@
-import { Typography } from "@mui/material"
-import { Container } from "@mui/system"
-import Navigations from "./components/Navigations"
+import { Typography } from '@mui/material'
+import { Container } from '@mui/system'
+import Navigations from './components/Navigations'
 
 function App() {
   return (
     <>
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Typography
-          variant="h4"
-          component="h1"
-          sx={{ textTransform: "uppercase", marginTop: "20px" }}
+          variant='h4'
+          component='h1'
+          sx={{ textTransform: 'uppercase', marginTop: '20px' }}
         >
           Мои компании
         </Typography>

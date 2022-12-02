@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import {
   Button,
   Typography,
@@ -8,10 +8,10 @@ import {
   CardActions,
   CardHeader,
   CardMedia,
-} from "@mui/material"
+} from '@mui/material'
 
-import { useSelector, useDispatch } from "react-redux"
-import { removeProduct } from "../../redux/slice/productsSlice"
+import { useSelector, useDispatch } from 'react-redux'
+import { removeProduct } from '../../redux/slice/productsSlice'
 
 export default function ProductList() {
   const dispatch = useDispatch()
@@ -25,8 +25,8 @@ export default function ProductList() {
   }
 
   const menuItemStyle = {
-    "&.Mui-selected": {
-      backgroundColor: "lightgrey",
+    '&.Mui-selected': {
+      backgroundColor: 'lightgrey',
     },
   }
 
@@ -34,48 +34,48 @@ export default function ProductList() {
     <>
       {!productList.length > 0 ? (
         <Typography
-          variant="h6"
-          component="p"
-          sx={{ textAlign: "center", opacity: 0.2, mb: 5, mt: 5 }}
+          variant='h6'
+          component='p'
+          sx={{ textAlign: 'center', opacity: 0.2, mb: 5, mt: 5 }}
         >
           Здесь будут отображаться, выбранный Вами ассортимент
         </Typography>
       ) : null}
 
-      <Grid container spacing="20">
+      <Grid container spacing='20'>
         {productList.map((product) => (
           <Grid item xs={12} sm={5} md={4} lg={3} key={product.id}>
             <Card>
               <CardHeader subheader={product.categories} />
               <CardMedia
-                component="img"
-                height="164"
+                component='img'
+                height='164'
                 image={product.image}
                 alt={product.name}
               />
               <CardContent>
-                <Typography sx={{ mb: 1 }} variant="h6" component="div">
+                <Typography sx={{ mb: 1 }} variant='h6' component='div'>
                   {product.name}
                 </Typography>
 
-                <Typography sx={{ mb: 2.5 }} color="text.secondary">
+                <Typography sx={{ mb: 2.5 }} color='text.secondary'>
                   Номер товара: {product.id}
                 </Typography>
 
                 {stepCount === 2 ? null : (
                   <>
-                    <Typography sx={{ mb: 1 }} variant="body2">
+                    <Typography sx={{ mb: 1 }} variant='body2'>
                       {product.desc}
                     </Typography>
 
-                    <Typography sx={{ mb: 2 }} variant="body2">
+                    <Typography sx={{ mb: 2 }} variant='body2'>
                       {'"a benevolent smile"'}
                     </Typography>
 
                     <CardActions>
                       <Button
                         onClick={() => handleDeleteItem(product)}
-                        size="small"
+                        size='small'
                       >
                         Удалить
                       </Button>

@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 const stepCount = createSlice({
-  name: "Step",
+  name: 'Step',
   initialState: {
     step: 0,
   },

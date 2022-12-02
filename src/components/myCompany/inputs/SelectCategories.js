@@ -1,11 +1,11 @@
-import react from "react"
-import { useTheme } from "@mui/material/styles"
-import { useDispatch, useSelector } from "react-redux"
+import react from 'react'
+import { useTheme } from '@mui/material/styles'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   addCategories,
   removeCategories,
-} from "../../../redux/slice/selectedCategories"
-import { removeProduct } from "../../../redux/slice/productsSlice"
+} from '../../../redux/slice/selectedCategories'
+import { removeProduct } from '../../../redux/slice/productsSlice'
 
 import {
   Box,
@@ -15,7 +15,7 @@ import {
   FormControl,
   Select,
   Chip,
-} from "@mui/material"
+} from '@mui/material'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -66,15 +66,15 @@ export default function SelectCategories({ label, data }) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="multiple-chip-label">{label}</InputLabel>
+        <InputLabel id='multiple-chip-label'>{label}</InputLabel>
         <Select
-          labelId="multiple-chip-label"
-          id="multiple-chip"
+          labelId='multiple-chip-label'
+          id='multiple-chip'
           multiple
           value={groupName}
-          input={<OutlinedInput id="select-multiple-chip" label={label} />}
+          input={<OutlinedInput id='select-multiple-chip' label={label} />}
           renderValue={(selected) => (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
                 <Chip key={value} label={value} />
               ))}

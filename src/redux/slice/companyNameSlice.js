@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 const companyNameSlice = createSlice({
-  name: "Company Name",
+  name: 'Company Name',
   initialState: {
-    name: "",
+    name: '',
   },
   reducers: {
     changeName(state, action) {
