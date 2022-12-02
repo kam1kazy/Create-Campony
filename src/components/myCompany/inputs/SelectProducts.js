@@ -1,5 +1,5 @@
 import React from "react"
-import { useTheme } from "@mui/material/styles"
+import { useTheme, createTheme } from "@mui/material/styles"
 import { useDispatch, useSelector } from "react-redux"
 import { addProduct, removeProduct } from "../../../redux/slice/productsSlice"
 
@@ -16,39 +16,36 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material"
-import { red } from "@mui/material/colors"
 
 const ITEM_HEIGHT = 48
-const ITEM_PADDING_TOP = 8
 const MenuProps = {
   PaperProps: {
     style: {
-      maxHeight: ITEM_HEIGHT * 7.5 + ITEM_PADDING_TOP,
+      maxHeight: ITEM_HEIGHT * 7.5,
       width: 450,
     },
   },
 }
 
+// Здесь задается цвет выбранной категории
 function getStyles(name, groupName, theme) {
   return {
-    fontWeight:
-      groupName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    backgroundColor:
+      groupName.indexOf(name) === -1 ? null : "rgba(25, 118, 210, 0.08)",
   }
 }
 
 export default function SelectProducts({ label, helperText }) {
   const theme = useTheme()
   const dispatch = useDispatch()
+  // USE SELECTOR
   const productList = useSelector((state) => state.productsReducer.goods)
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
   )
-
   const groupName = productList.map((item) => item.name)
 
-  const handleSelectItem = (item) => {
+  const handleSelectProduct = (item) => {
     if (!productList.includes(item)) {
       dispatch(addProduct({ item }))
     } else {
@@ -92,29 +89,54 @@ export default function SelectProducts({ label, helperText }) {
           </Box>
         )}
         MenuProps={MenuProps}
+        disabled={selectedCategories.length === 0 ? true : false}
       >
         {selectedCategories.map((item, id) => {
+          // Проверка ниже, нужна чтобы переключать текст "Добавить всё/Удалить всё"
+          let count = 0
+          let boolean = false
+
+          selectedCategories[id].products.forEach(function (product, id, arr) {
+            if (productList.includes(product)) {
+              count++
+            }
+            if (arr.length === count) {
+              boolean = true
+            }
+          })
+
           return (
-            <div key={item.id}>
+            <Box
+              key={item.id}
+              sx={{
+                mb: 2,
+              }}
+            >
               <ListSubheader
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   cursor: "pointer",
+                  backgroundColor: "#fcfcfc",
+                  "&:hover": { backgroundColor: "#f2f2f2" },
+                  mb: 2,
                 }}
                 onClick={() => selectedAllCategory(item)}
               >
                 <span>{item.name}</span>
 
-                <span>Добавить всё</span>
+                <span>{boolean ? "Удалить всё" : "Добавить всё"}</span>
               </ListSubheader>
               {item.products.map((item) => (
                 <MenuItem
                   key={item.id}
-                  onClick={() => handleSelectItem(item)}
+                  onClick={() => handleSelectProduct(item)}
                   value={item.name}
                   style={getStyles(item.name, groupName, theme)}
-                  sx={{ flexFlow: "row", alignItems: "flex-start" }}
+                  sx={{
+                    flexFlow: "row",
+                    alignItems: "flex-start",
+                  }}
                 >
                   <CardMedia
                     component="img"
@@ -150,7 +172,7 @@ export default function SelectProducts({ label, helperText }) {
                   </Box>
                 </MenuItem>
               ))}
-            </div>
+            </Box>
           )
         })}
       </Select>

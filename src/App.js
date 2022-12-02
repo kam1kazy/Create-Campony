@@ -9,7 +9,7 @@ function App() {
         <Typography
           variant="h4"
           component="h1"
-          sx={{ textTransform: "uppercase", marginTop: "40px" }}
+          sx={{ textTransform: "uppercase", marginTop: "20px" }}
         >
           Мои компании
         </Typography>

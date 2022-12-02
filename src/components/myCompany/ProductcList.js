@@ -24,6 +24,12 @@ export default function ProductList() {
     }
   }
 
+  const menuItemStyle = {
+    "&.Mui-selected": {
+      backgroundColor: "lightgrey",
+    },
+  }
+
   return (
     <>
       {!productList.length > 0 ? (
@@ -36,19 +42,19 @@ export default function ProductList() {
         </Typography>
       ) : null}
 
-      <Grid container spacing="30">
+      <Grid container spacing="20">
         {productList.map((product) => (
-          <Grid item xs={12} md={4} key={product.id}>
-            <Card sx={{ minWidth: 275 }}>
+          <Grid item xs={12} sm={5} md={4} lg={3} key={product.id}>
+            <Card>
               <CardHeader subheader={product.categories} />
               <CardMedia
                 component="img"
-                height="194"
+                height="164"
                 image={product.image}
                 alt={product.name}
               />
               <CardContent>
-                <Typography sx={{ mb: 1 }} variant="h5" component="div">
+                <Typography sx={{ mb: 1 }} variant="h6" component="div">
                   {product.name}
                 </Typography>
 

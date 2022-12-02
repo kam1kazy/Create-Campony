@@ -5,6 +5,7 @@ import {
   addCategories,
   removeCategories,
 } from "../../../redux/slice/selectedCategories"
+import { removeProduct } from "../../../redux/slice/productsSlice"
 
 import {
   Box,
@@ -39,16 +40,26 @@ function getStyles(name, groupName, theme) {
 export default function SelectCategories({ label, data }) {
   const theme = useTheme()
   const dispatch = useDispatch()
+
+  // USE SELECTOR
+  const productList = useSelector((state) => state.productsReducer.goods)
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
   )
+
   const groupName = selectedCategories.map((item) => item.name)
 
-  const handleSelectItem = (item) => {
+  const handleSelectedCategory = (item) => {
     if (!selectedCategories.includes(item)) {
       dispatch(addCategories({ item }))
     } else {
       dispatch(removeCategories({ item }))
+
+      item.products.forEach(function (product, i) {
+        if (productList.includes(product)) {
+          dispatch(removeProduct(product))
+        }
+      })
     }
   }
 
@@ -74,7 +85,7 @@ export default function SelectCategories({ label, data }) {
           {data.map((item) => (
             <MenuItem
               key={item.id}
-              onClick={() => handleSelectItem(item)}
+              onClick={() => handleSelectedCategory(item)}
               value={item.name}
               style={getStyles(item.name, groupName, theme)}
             >

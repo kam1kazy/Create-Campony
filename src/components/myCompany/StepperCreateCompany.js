@@ -9,7 +9,7 @@ import StepOne from "./steps/StepOne"
 import StepTwo from "./steps/StepTwo"
 import StepThree from "./steps/StepThree"
 
-export default function FormArea() {
+export default function StepperCreateCompany() {
   const companyName = useSelector((state) => state.companyNameReducer.name)
 
   return (
@@ -64,7 +64,7 @@ export function FormikStepper({ children, ...props }) {
       }}
     >
       <Form autoComplete="off">
-        <Stepper activeStep={step} sx={{ mt: 1, mb: 8 }}>
+        <Stepper activeStep={step} sx={{ mt: 0, mb: 5 }}>
           {childrenArray.map((child) => {
             return (
               <Step key={child.props.label}>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { Tabs, Tab, Box, Card, CardContent } from "@mui/material"
 
-import FormArea from "./myCompany/StepperCreateCompany"
+import StepperCreateCompany from "./myCompany/StepperCreateCompany"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -37,7 +37,7 @@ export default function Navigations() {
 
   return (
     <>
-      <Card variant="outlined" sx={{ mt: 5 }}>
+      <Card variant="outlined" sx={{ mt: 4 }}>
         <CardContent>
           <Box sx={{ width: "100%", marginBottom: "10px", marginTop: "10px" }}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -55,10 +55,10 @@ export default function Navigations() {
         </CardContent>
       </Card>
 
-      <Card variant="outlined" sx={{ mt: 6, mb: 10 }}>
+      <Card variant="outlined" sx={{ mt: 4, mb: 8 }}>
         <CardContent>
           <TabPanel value={value} index={0}>
-            <FormArea />
+            <StepperCreateCompany />
           </TabPanel>
           <TabPanel value={value} index={1}>
             Item Two
