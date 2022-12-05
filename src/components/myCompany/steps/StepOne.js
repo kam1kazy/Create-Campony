@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import ButtonSelectProducts from '../inputs/ButtonSelectProducts'
-import ButtonTemplate from '../inputs/ButtonTemplate'
+import LinkButton from '../inputs/LinkButton'
 import ButtonUploadExcelFile from '../inputs/ButtonUploadExcelFile'
 import InputField from '../inputs/InputField'
 
@@ -44,8 +44,8 @@ export default function StepOne() {
         </Box>
 
         <Box sx={{ alignItems: 'flex-end', flexFlow: 'column' }} display='flex'>
-          <ButtonTemplate name='Предосмотр' />
-          <ButtonTemplate name='Скачать шаблон' />
+          <LinkButton name='Предосмотр' />
+          <LinkButton name='Скачать шаблон' />
         </Box>
       </Box>
     </>

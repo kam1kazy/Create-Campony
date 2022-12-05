@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Stack } from '@mui/material'
 
 import { useDispatch } from 'react-redux'
-import { nextStep } from '../../../redux/slice/stepCount'
+import { nextStep } from '../../../redux/slice/stepCountSlice'
 
 export default function ButtonSelectProducts({
   name,

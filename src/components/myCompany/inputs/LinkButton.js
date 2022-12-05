@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Stack } from '@mui/material'
+import { Link, Stack } from '@mui/material'
 
 import { useDispatch } from 'react-redux'
-import { nextStep } from '../../../redux/slice/stepCount'
+import { nextStep } from '../../../redux/slice/stepCountSlice'
 
-export default function ButtonTemplate({ name, disabled, nextStepActive }) {
+export default function LinkButton({ name, disabled, nextStepActive }) {
   const dispatch = useDispatch()
 
   const handleNextStep = () => {
@@ -13,13 +13,13 @@ export default function ButtonTemplate({ name, disabled, nextStepActive }) {
 
   return (
     <Stack direction='row'>
-      <Button
+      <Link
         variant='text'
         disabled={disabled}
         onClick={nextStepActive ? handleNextStep : null}
       >
         {name}
-      </Button>
+      </Link>
     </Stack>
   )
 }

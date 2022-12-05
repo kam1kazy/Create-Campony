@@ -49,6 +49,7 @@ export default function SelectCategories({ label, data }) {
 
   const groupName = selectedCategories.map((item) => item.name)
 
+  // Select Categories
   const handleSelectedCategory = (item) => {
     if (!selectedCategories.includes(item)) {
       dispatch(addCategories({ item }))

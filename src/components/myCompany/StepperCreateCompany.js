@@ -1,17 +1,20 @@
 import React, { Children } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nextStep, lastStep } from '../../redux/slice/stepCount'
+import { nextStep, lastStep } from '../../redux/slice/stepCountSlice'
 import { Formik, Form } from 'formik'
 
 import { Button, Box, Stepper, Step, StepLabel } from '@mui/material'
+
+import { resetCategories } from '../../redux/slice/selectedCategories'
+import { resetProducts } from '../../redux/slice/productsSlice'
+import { resetNomenclatura } from '../../redux/slice/nomenclaturaSlice'
+import { resetName } from '../../redux/slice/companyNameSlice'
 
 import StepOne from './steps/StepOne'
 import StepTwo from './steps/StepTwo'
 import StepThree from './steps/StepThree'
 
 export default function StepperCreateCompany() {
-  const companyName = useSelector((state) => state.companyNameReducer.name)
-
   return (
     <FormikStepper
       initialValues={{
@@ -52,6 +55,17 @@ export function FormikStepper({ children, ...props }) {
     return step === childrenArray.length - 1
   }
 
+  const backStep = () => {
+    dispatch(lastStep())
+    if (step === 1) {
+      console.log('reset')
+      dispatch(resetCategories())
+      dispatch(resetProducts())
+      dispatch(resetNomenclatura())
+      dispatch(resetName())
+    }
+  }
+
   return (
     <Formik
       {...props}
@@ -88,7 +102,7 @@ export function FormikStepper({ children, ...props }) {
           {step > 0 ? (
             <>
               {' '}
-              <Button onClick={() => dispatch(lastStep())} variant='contained'>
+              <Button onClick={backStep} variant='contained'>
                 {' '}
                 Назад{' '}
               </Button>

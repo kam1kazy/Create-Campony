@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme, createTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct, removeProduct } from '../../../redux/slice/productsSlice'
 

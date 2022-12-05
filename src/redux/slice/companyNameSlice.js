@@ -9,9 +9,12 @@ const companyNameSlice = createSlice({
     changeName(state, action) {
       state.name = action.payload
     },
+    resetName(state, action) {
+      state.name = ''
+    },
   },
 })
 
-export const { changeName } = companyNameSlice.actions
+export const { changeName, resetName } = companyNameSlice.actions
 
 export default companyNameSlice.reducer

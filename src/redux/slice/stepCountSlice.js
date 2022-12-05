@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const stepCount = createSlice({
+const stepCountSlice = createSlice({
   name: 'Step',
   initialState: {
     step: 0,
@@ -15,6 +15,6 @@ const stepCount = createSlice({
   },
 })
 
-export const { nextStep, lastStep } = stepCount.actions
+export const { nextStep, lastStep } = stepCountSlice.actions
 
-export default stepCount.reducer
+export default stepCountSlice.reducer

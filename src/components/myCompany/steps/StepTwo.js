@@ -12,8 +12,26 @@ export default function StepTwo() {
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
   )
+  const nomenclatura = useSelector((state) => state.nomenclaturaReducer.array)
 
   if (isLoading) return <h1>Loading...</h1>
+
+  const nomenclaturaGoods = data
+    .map((categories) => {
+      const obj = {
+        ...categories,
+
+        products: categories.products.filter((product) => {
+          for (let i = 0; nomenclatura.length > i; i++) {
+            if (nomenclatura[i] === product.id) {
+              return product
+            }
+          }
+        }),
+      }
+      return obj
+    })
+    .filter((cat) => cat.products.length > 0)
 
   return (
     <>
@@ -21,7 +39,10 @@ export default function StepTwo() {
         Выберите группу предметов которую хотите рекламировать
       </Typography>
 
-      <SelectCategories data={data} label='Группы предметов' />
+      <SelectCategories
+        data={nomenclatura.length > 0 ? nomenclaturaGoods : data}
+        label='Группы предметов'
+      />
 
       <Typography variant='h5' component='p' sx={{ mb: 2, mt: 4 }}>
         Выберите предметы из группы

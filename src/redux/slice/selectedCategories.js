@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const selectedCategories = createSlice({
+const selectedCategoriesSlice = createSlice({
   name: 'Selected Categories',
   initialState: {
     categories: [],
@@ -20,10 +20,17 @@ const selectedCategories = createSlice({
         (item) => item.name !== action.payload.item.name
       )
     },
+    resetCategories(state) {
+      state.categories = []
+    },
   },
 })
 
-export const { addCategories, toggleActive, removeCategories } =
-  selectedCategories.actions
+export const {
+  addCategories,
+  toggleActive,
+  removeCategories,
+  resetCategories,
+} = selectedCategoriesSlice.actions
 
-export default selectedCategories.reducer
+export default selectedCategoriesSlice.reducer
