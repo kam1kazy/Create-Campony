@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import ProductList from '../ProductcList'
 
 export default function StepThree() {
+  // SELECTORS from Reducer
   const companyName = useSelector((state) => state.companyNameReducer.name)
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories

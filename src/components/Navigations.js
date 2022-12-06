@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Tabs, Tab, Box, Card, CardContent } from '@mui/material'
 
-import StepperCreateCompany from './myCompany/StepperCreateCompany'
+import CreateCompany from './myCompany/CreateCompany'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -58,13 +58,13 @@ export default function Navigations() {
       <Card variant='outlined' sx={{ mt: 4, mb: 8 }}>
         <CardContent>
           <TabPanel value={value} index={0}>
-            <StepperCreateCompany />
+            <CreateCompany />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+            Страница карточки товара
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            Страница каталога
           </TabPanel>
         </CardContent>
       </Card>

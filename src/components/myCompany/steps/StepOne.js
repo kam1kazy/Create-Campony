@@ -4,18 +4,19 @@ import fileDownload from 'js-file-download'
 import { useSelector } from 'react-redux'
 import { Box, Typography } from '@mui/material'
 
-import ButtonSelectProducts from '../inputs/ButtonSelectProducts'
-import LinkButton from '../inputs/LinkButton'
-import ButtonUploadExcelFile from '../inputs/ButtonUploadExcelFile'
+// Components
+import ButtonSelectProducts from '../buttons/ButtonSelectProducts'
+import LinkButton from '../links/LinkButton'
+import ButtonUploadExcelFile from '../buttons/ButtonUploadExcelFile'
 import InputField from '../inputs/InputField'
 
+// Static File
 import nomenclaturaFile from '../../../assets/nomenclatura.xlsx'
 
 export default function StepOne() {
   const companyName = useSelector((state) => state.companyNameReducer.name)
 
-  console.log(nomenclaturaFile)
-
+  // Download Template - link
   const handleDownload = async () => {
     await axios
       .get(nomenclaturaFile, {

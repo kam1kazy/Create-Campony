@@ -1,12 +1,5 @@
-import react from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  addCategories,
-  removeCategories,
-} from '../../../redux/slice/selectedCategories'
-import { removeProduct } from '../../../redux/slice/productsSlice'
-
 import {
   Box,
   OutlinedInput,
@@ -17,6 +10,20 @@ import {
   Chip,
 } from '@mui/material'
 
+// Slices
+import {
+  addCategories,
+  removeCategories,
+  resetCategories,
+  deleteChipCategory,
+} from '../../../redux/slice/selectedCategories'
+import {
+  removeProduct,
+  deleteChipProducts,
+  resetProducts,
+} from '../../../redux/slice/productsSlice'
+
+// Стили выпадающего списка
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -28,12 +35,11 @@ const MenuProps = {
   },
 }
 
+// Стили выбранного Select
 function getStyles(name, groupName, theme) {
   return {
-    fontWeight:
-      groupName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    backgroundColor:
+      groupName.indexOf(name) === -1 ? null : 'rgba(25, 118, 210, 0.08)',
   }
 }
 
@@ -49,7 +55,7 @@ export default function SelectCategories({ label, data }) {
 
   const groupName = selectedCategories.map((item) => item.name)
 
-  // Select Categories
+  // Select / Delete Categories
   const handleSelectedCategory = (item) => {
     if (!selectedCategories.includes(item)) {
       dispatch(addCategories({ item }))
@@ -64,9 +70,21 @@ export default function SelectCategories({ label, data }) {
     }
   }
 
+  // Delete Chips Categories
+  const handleDeleteCategory = (name) => {
+    dispatch(deleteChipCategory({ name }))
+    dispatch(deleteChipProducts({ name }))
+  }
+
+  // Reset categories and products
+  const handleResetCategory = () => {
+    dispatch(resetCategories())
+    dispatch(resetProducts())
+  }
+
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 1, width: 400 }}>
         <InputLabel id='multiple-chip-label'>{label}</InputLabel>
         <Select
           labelId='multiple-chip-label'
@@ -77,22 +95,41 @@ export default function SelectCategories({ label, data }) {
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip
+                  key={value}
+                  label={value}
+                  sx={{ zIndex: '999999' }}
+                  onDelete={() => handleDeleteCategory(value)}
+                />
               ))}
             </Box>
           )}
           MenuProps={MenuProps}
         >
-          {data.map((item) => (
+          <Box>
             <MenuItem
-              key={item.id}
-              onClick={() => handleSelectedCategory(item)}
-              value={item.name}
-              style={getStyles(item.name, groupName, theme)}
+              sx={{
+                justifyContent: 'center',
+                fontSize: '14px',
+                opacity: '.6',
+              }}
+              onClick={handleResetCategory}
             >
-              {item.name}
+              --- сбросить всё ---
             </MenuItem>
-          ))}
+            {data.map((item) => {
+              return (
+                <MenuItem
+                  key={item.id}
+                  onClick={() => handleSelectedCategory(item)}
+                  value={item.name}
+                  style={getStyles(item.name, groupName, theme)}
+                >
+                  {item.name}
+                </MenuItem>
+              )
+            })}
+          </Box>
         </Select>
       </FormControl>
     </div>

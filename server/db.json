@@ -36,7 +36,7 @@
           "active": false,
           "categories": "Платья",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Платья 1",
+          "name": "Платьe 1",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! платья 1"
         },
         {
@@ -45,7 +45,7 @@
           "active": false,
           "categories": "Платья",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Платья 2",
+          "name": "Платьe 2",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! платья 2"
         }
       ]
@@ -59,18 +59,18 @@
           "id": 5,
           "categoriesId": 3,
           "active": false,
-          "categories": "Сумки",
+          "categories": "Рюкзаки",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Рюкзак 1",
+          "name": "Сумка 1",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! рюкзака 1"
         },
         {
           "id": 6,
           "categoriesId": 3,
           "active": false,
-          "categories": "Сумки",
+          "categories": "Рюкзаки",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Рюкзак 2",
+          "name": "Сумка 2",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! рюкзака 2"
         }
       ]
@@ -111,7 +111,7 @@
           "active": false,
           "categories": "Аксессуары",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Аксессуара 1",
+          "name": "Аксессуар 1",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! аксессуара 1"
         },
         {
@@ -120,7 +120,7 @@
           "active": false,
           "categories": "Аксессуары",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Аксессуара 2",
+          "name": "Аксессуар 2",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! аксессуара 1"
         }
       ]
@@ -134,9 +134,9 @@
           "id": 11,
           "categoriesId": 6,
           "active": false,
-          "categories": "Одежда",
+          "categories": "Верхняя одежда",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Верхняя одежда 1",
+          "name": "Одежда 1",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! верхней одежды 1"
         },
         {
@@ -145,7 +145,7 @@
           "active": false,
           "categories": "Одежда",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
-          "name": "Верхняя одежда 2",
+          "name": "Одежда 2",
           "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! верхней одежды 2"
         }
       ]

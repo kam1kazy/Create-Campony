@@ -17,6 +17,7 @@ import {
   Typography,
 } from '@mui/material'
 
+// Стили выпадающего списка
 const ITEM_HEIGHT = 48
 const MenuProps = {
   PaperProps: {
@@ -43,8 +44,11 @@ export default function SelectProducts({ label, helperText }) {
   const selectedCategories = useSelector(
     (state) => state.selectedCategoriesReducer.categories
   )
+
+  // Chips - выбранные категории в Input Select, имя в овальном блоке
   const groupName = productList.map((item) => item.name)
 
+  // Delete / Selected product
   const handleSelectProduct = (item) => {
     if (!productList.includes(item)) {
       dispatch(addProduct({ item }))
@@ -53,6 +57,7 @@ export default function SelectProducts({ label, helperText }) {
     }
   }
 
+  // Выбрать всю всю категорию
   const selectedAllCategory = (item) => {
     let count = 0
 
@@ -72,7 +77,7 @@ export default function SelectProducts({ label, helperText }) {
   }
 
   return (
-    <FormControl sx={{ m: 1, width: 300 }}>
+    <FormControl sx={{ m: 1, width: 400 }}>
       <InputLabel id='multiple-chip-label'>{label}</InputLabel>
 
       <Select
@@ -91,8 +96,11 @@ export default function SelectProducts({ label, helperText }) {
         MenuProps={MenuProps}
         disabled={selectedCategories.length === 0 ? true : false}
       >
+        {/* Рендер категорий, внутри них уже рендер продуктов */}
         {selectedCategories.map((item, id) => {
-          // Проверка ниже, нужна чтобы переключать текст "Добавить всё/Удалить всё"
+          {
+            /* Проверка ниже, нужна чтобы переключать текст "Добавить всё/Удалить всё" */
+          }
           let count = 0
           let boolean = false
 
@@ -106,27 +114,32 @@ export default function SelectProducts({ label, helperText }) {
           })
 
           return (
-            <Box
-              key={item.id}
-              sx={{
-                mb: 2,
-              }}
-            >
+            <Box key={item.id} sx={{ borderBottom: '1px solid #e9ecf1' }}>
+              {/* ListSubheader  -  это имя категории в списке */}
+
               <ListSubheader
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  backgroundColor: '#fcfcfc',
-                  '&:hover': { backgroundColor: '#f2f2f2' },
-                  mb: 2,
-                }}
+                sx={[
+                  {
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    cursor: 'pointer',
+                    backgroundColor: '#fcfcfc',
+                    pb: 1,
+                    pt: 1,
+                    '&:hover': { backgroundColor: '#f2f2f2' },
+                  },
+                  boolean && {
+                    backgroundColor: '#ebf4fc',
+                  },
+                ]}
                 onClick={() => selectedAllCategory(item)}
               >
                 <span>{item.name}</span>
 
                 <span>{boolean ? 'Удалить всё' : 'Добавить всё'}</span>
               </ListSubheader>
+
+              {/* Здесь рендерит список доступных продукций в категории */}
               {item.products.map((item) => (
                 <MenuItem
                   key={item.id}
@@ -136,6 +149,8 @@ export default function SelectProducts({ label, helperText }) {
                   sx={{
                     flexFlow: 'row',
                     alignItems: 'flex-start',
+                    pt: 2,
+                    pb: 2,
                   }}
                 >
                   <CardMedia

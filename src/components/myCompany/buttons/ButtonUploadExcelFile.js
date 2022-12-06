@@ -8,6 +8,7 @@ import { setNomenclatura } from '../../../redux/slice/nomenclaturaSlice'
 export default function ButtonUploadExcelFile({ name, disabled }) {
   const dispatch = useDispatch()
 
+  // Получаем Excel файл и рендерим из него json
   const readUploadFile = (e) => {
     e.preventDefault()
 
@@ -20,6 +21,7 @@ export default function ButtonUploadExcelFile({ name, disabled }) {
         const worksheet = workbook.Sheets[sheetName]
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
 
+        // Делаем фильтр для комфортной работы с данными и отправляем в reducer
         const jsonFilter = jsonData.map(function (value) {
           return value[1]
         })
@@ -29,12 +31,7 @@ export default function ButtonUploadExcelFile({ name, disabled }) {
       reader.readAsArrayBuffer(e.target.files[0])
     }
 
-    handleNextStep()
-  }
-
-  const getUploadProducts = () => {}
-
-  const handleNextStep = () => {
+    // Next step
     dispatch(nextStep())
   }
 

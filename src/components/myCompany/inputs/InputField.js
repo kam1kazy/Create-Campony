@@ -9,6 +9,7 @@ export default function InputField({ name, label, type }) {
   const dispatch = useDispatch()
   const companyName = useSelector((state) => state.companyNameReducer.name)
 
+  // Контролируемый Inupt через глобальное состояние (state reducer)
   const handleCheckInput = (e) => {
     dispatch(changeName(e.target.value))
   }

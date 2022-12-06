@@ -11,6 +11,7 @@ export default function ButtonSelectProducts({
 }) {
   const dispatch = useDispatch()
 
+  // Next step
   const handleNextStep = () => {
     dispatch(nextStep())
   }

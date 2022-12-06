@@ -20,6 +20,11 @@ const selectedCategoriesSlice = createSlice({
         (item) => item.name !== action.payload.item.name
       )
     },
+    deleteChipCategory(state, action) {
+      state.categories = state.categories.filter(
+        (item) => item.name !== action.payload.name
+      )
+    },
     resetCategories(state) {
       state.categories = []
     },
@@ -30,6 +35,7 @@ export const {
   addCategories,
   toggleActive,
   removeCategories,
+  deleteChipCategory,
   resetCategories,
 } = selectedCategoriesSlice.actions
 

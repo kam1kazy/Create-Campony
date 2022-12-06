@@ -15,19 +15,15 @@ import { removeProduct } from '../../redux/slice/productsSlice'
 
 export default function ProductList() {
   const dispatch = useDispatch()
+  // SELECTORS from reducer
   const productList = useSelector((state) => state.productsReducer.goods)
   const stepCount = useSelector((state) => state.stepCountReducer.step)
 
+  // Delete selected product
   const handleDeleteItem = (product) => {
     if (!productList.includes(product.id)) {
       dispatch(removeProduct(product))
     }
-  }
-
-  const menuItemStyle = {
-    '&.Mui-selected': {
-      backgroundColor: 'lightgrey',
-    },
   }
 
   return (
@@ -74,6 +70,7 @@ export default function ProductList() {
 
                     <CardActions>
                       <Button
+                        color='error'
                         onClick={() => handleDeleteItem(product)}
                         size='small'
                       >

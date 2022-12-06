@@ -5,16 +5,18 @@ import { Formik, Form } from 'formik'
 
 import { Button, Box, Stepper, Step, StepLabel } from '@mui/material'
 
+// Slices
 import { resetCategories } from '../../redux/slice/selectedCategories'
 import { resetProducts } from '../../redux/slice/productsSlice'
 import { resetNomenclatura } from '../../redux/slice/nomenclaturaSlice'
 import { resetName } from '../../redux/slice/companyNameSlice'
 
+// Components
 import StepOne from './steps/StepOne'
 import StepTwo from './steps/StepTwo'
 import StepThree from './steps/StepThree'
 
-export default function StepperCreateCompany() {
+export default function CreateCompany() {
   return (
     <FormikStepper
       initialValues={{
@@ -45,11 +47,11 @@ export default function StepperCreateCompany() {
 }
 
 export function FormikStepper({ children, ...props }) {
+  const dispatch = useDispatch()
+
   const childrenArray = Children.toArray(children)
   const step = useSelector((state) => state.stepCountReducer.step)
   const currentChild = childrenArray[step]
-
-  const dispatch = useDispatch()
 
   function isLastStep() {
     return step === childrenArray.length - 1
@@ -58,7 +60,6 @@ export function FormikStepper({ children, ...props }) {
   const backStep = () => {
     dispatch(lastStep())
     if (step === 1) {
-      console.log('reset')
       dispatch(resetCategories())
       dispatch(resetProducts())
       dispatch(resetNomenclatura())
@@ -101,23 +102,21 @@ export function FormikStepper({ children, ...props }) {
         >
           {step > 0 ? (
             <>
-              {' '}
               <Button onClick={backStep} variant='contained'>
-                {' '}
-                Назад{' '}
+                Назад
               </Button>
               {!isLastStep() ? (
                 <Button type='submit' variant='contained'>
                   Дальше
                 </Button>
-              ) : null}{' '}
+              ) : null}
             </>
-          ) : null}{' '}
+          ) : null}
           {isLastStep() ? (
             <Button type='submit' variant='contained'>
               Отправить
             </Button>
-          ) : null}{' '}
+          ) : null}
         </Box>
       </Form>
     </Formik>
