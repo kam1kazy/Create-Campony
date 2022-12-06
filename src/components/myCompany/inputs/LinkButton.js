@@ -1,25 +1,16 @@
 import React from 'react'
 import { Link, Stack } from '@mui/material'
 
-import { useDispatch } from 'react-redux'
-import { nextStep } from '../../../redux/slice/stepCountSlice'
-
-export default function LinkButton({ name, disabled, nextStepActive }) {
-  const dispatch = useDispatch()
-
-  const handleNextStep = () => {
-    dispatch(nextStep())
-  }
-
+export default function LinkButton({ name, disabled, handleDownload }) {
   return (
-    <Stack direction='row'>
-      <Link
-        variant='text'
-        disabled={disabled}
-        onClick={nextStepActive ? handleNextStep : null}
-      >
-        {name}
-      </Link>
-    </Stack>
+    <Link
+      sx={{ mb: 2, cursor: 'pointer' }}
+      variant='text'
+      disabled={disabled}
+      underline='none'
+      onClick={handleDownload ? handleDownload : null}
+    >
+      {name}
+    </Link>
   )
 }

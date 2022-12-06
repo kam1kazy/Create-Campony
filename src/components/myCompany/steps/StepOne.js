@@ -1,14 +1,31 @@
 import React from 'react'
+import axios from 'axios'
+import fileDownload from 'js-file-download'
 import { useSelector } from 'react-redux'
+import { Box, Typography } from '@mui/material'
+
 import ButtonSelectProducts from '../inputs/ButtonSelectProducts'
 import LinkButton from '../inputs/LinkButton'
 import ButtonUploadExcelFile from '../inputs/ButtonUploadExcelFile'
 import InputField from '../inputs/InputField'
 
-import { Box, Typography } from '@mui/material'
+import nomenclaturaFile from '../../../assets/nomenclatura.xlsx'
 
 export default function StepOne() {
   const companyName = useSelector((state) => state.companyNameReducer.name)
+
+  console.log(nomenclaturaFile)
+
+  const handleDownload = async () => {
+    await axios
+      .get(nomenclaturaFile, {
+        responseType: 'blob',
+      })
+      .then((res) => {
+        console.log(res.data)
+        fileDownload(res.data, 'templateExcel.xlsx')
+      })
+  }
 
   return (
     <>
@@ -44,8 +61,8 @@ export default function StepOne() {
         </Box>
 
         <Box sx={{ alignItems: 'flex-end', flexFlow: 'column' }} display='flex'>
-          <LinkButton name='Предосмотр' />
-          <LinkButton name='Скачать шаблон' />
+          <LinkButton name='Предосмотр' disabled />
+          <LinkButton name='Скачать шаблон' handleDownload={handleDownload} />
         </Box>
       </Box>
     </>
