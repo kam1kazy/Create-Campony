@@ -3,6 +3,7 @@ import axios from 'axios'
 import fileDownload from 'js-file-download'
 import { useSelector } from 'react-redux'
 import { Box, Typography } from '@mui/material'
+import { companyNameSelector } from '../../../redux/selectors'
 
 // Components
 import ButtonSelectProducts from '../buttons/ButtonSelectProducts'
@@ -14,7 +15,7 @@ import InputField from '../inputs/InputField'
 import nomenclaturaFile from '../../../assets/nomenclatura.xlsx'
 
 export default function StepOne() {
-  const companyName = useSelector((state) => state.companyNameReducer.name)
+  const companyName = useSelector(companyNameSelector)
 
   // Download Template - link
   const handleDownload = async () => {

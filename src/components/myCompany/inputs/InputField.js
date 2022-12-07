@@ -4,10 +4,11 @@ import { TextField } from '@mui/material'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { changeName } from '../../../redux/slice/companyNameSlice'
+import { companyNameSelector } from '../../../redux/selectors'
 
 export default function InputField({ name, label, type }) {
   const dispatch = useDispatch()
-  const companyName = useSelector((state) => state.companyNameReducer.name)
+  const companyName = useSelector(companyNameSelector)
 
   // Контролируемый Inupt через глобальное состояние (state reducer)
   const handleCheckInput = (e) => {

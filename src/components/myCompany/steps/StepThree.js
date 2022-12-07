@@ -3,12 +3,15 @@ import { Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import ProductList from '../ProductcList'
 
+import {
+  companyNameSelector,
+  selectedCategoriesSelector,
+} from '../../../redux/selectors'
+
 export default function StepThree() {
   // SELECTORS from Reducer
-  const companyName = useSelector((state) => state.companyNameReducer.name)
-  const selectedCategories = useSelector(
-    (state) => state.selectedCategoriesReducer.categories
-  )
+  const companyName = useSelector(companyNameSelector)
+  const selectedCategories = useSelector(selectedCategoriesSelector)
   const splitCategories = selectedCategories.map((item) => item.name)
 
   return (

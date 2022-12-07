@@ -13,11 +13,14 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { removeProduct } from '../../redux/slice/productsSlice'
 
+// Selectors
+import { productListSelector, stepCountSelector } from '../../redux/selectors'
+
 export default function ProductList() {
   const dispatch = useDispatch()
   // SELECTORS from reducer
-  const productList = useSelector((state) => state.productsReducer.goods)
-  const stepCount = useSelector((state) => state.stepCountReducer.step)
+  const productList = useSelector(productListSelector)
+  const stepCount = useSelector(stepCountSelector)
 
   // Delete selected product
   const handleDeleteItem = (product) => {

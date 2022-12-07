@@ -2,6 +2,10 @@ import React from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct, removeProduct } from '../../../redux/slice/productsSlice'
+import {
+  productListSelector,
+  selectedCategoriesSelector,
+} from '../../../redux/selectors'
 
 import {
   Box,
@@ -29,7 +33,7 @@ const MenuProps = {
 }
 
 // Здесь задается цвет выбранной категории
-function getStyles(name, groupName, theme) {
+function getStyles(name, groupName) {
   return {
     backgroundColor:
       groupName.indexOf(name) === -1 ? null : 'rgba(25, 118, 210, 0.08)',
@@ -39,11 +43,10 @@ function getStyles(name, groupName, theme) {
 export default function SelectProducts({ label, helperText }) {
   const theme = useTheme()
   const dispatch = useDispatch()
+
   // USE SELECTOR
-  const productList = useSelector((state) => state.productsReducer.goods)
-  const selectedCategories = useSelector(
-    (state) => state.selectedCategoriesReducer.categories
-  )
+  const productList = useSelector(productListSelector)
+  const selectedCategories = useSelector(selectedCategoriesSelector)
 
   // Chips - выбранные категории в Input Select, имя в овальном блоке
   const groupName = productList.map((item) => item.name)

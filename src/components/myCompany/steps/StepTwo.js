@@ -11,6 +11,13 @@ import ProductList from '../ProductcList'
 import SelectCategories from '../selects/SelectCategories'
 import SelectProducts from '../selects/SelectProducts'
 
+// Selectors
+import {
+  productListSelector,
+  selectedCategoriesSelector,
+  nomenclaturaSelector,
+} from '../../../redux/selectors'
+
 export default function StepTwo() {
   const dispatch = useDispatch()
 
@@ -18,11 +25,9 @@ export default function StepTwo() {
   const { data = [], isLoading } = useGetGoodsQuery()
 
   // SELECTORS from Reducer
-  const selectedCategories = useSelector(
-    (state) => state.selectedCategoriesReducer.categories
-  )
-  const productList = useSelector((state) => state.productsReducer.goods)
-  const nomenclatura = useSelector((state) => state.nomenclaturaReducer.array)
+  const selectedCategories = useSelector(selectedCategoriesSelector)
+  const productList = useSelector(productListSelector)
+  const nomenclatura = useSelector(nomenclaturaSelector)
 
   if (isLoading) return <Typography component='p'>Загрузка...</Typography>
 

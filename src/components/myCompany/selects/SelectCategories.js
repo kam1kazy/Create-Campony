@@ -9,6 +9,10 @@ import {
   Select,
   Chip,
 } from '@mui/material'
+import {
+  productListSelector,
+  selectedCategoriesSelector,
+} from '../../../redux/selectors'
 
 // Slices
 import {
@@ -36,7 +40,7 @@ const MenuProps = {
 }
 
 // Стили выбранного Select
-function getStyles(name, groupName, theme) {
+function getStyles(name, groupName) {
   return {
     backgroundColor:
       groupName.indexOf(name) === -1 ? null : 'rgba(25, 118, 210, 0.08)',
@@ -48,10 +52,8 @@ export default function SelectCategories({ label, data }) {
   const dispatch = useDispatch()
 
   // USE SELECTOR
-  const productList = useSelector((state) => state.productsReducer.goods)
-  const selectedCategories = useSelector(
-    (state) => state.selectedCategoriesReducer.categories
-  )
+  const productList = useSelector(productListSelector)
+  const selectedCategories = useSelector(selectedCategoriesSelector)
 
   const groupName = selectedCategories.map((item) => item.name)
 
