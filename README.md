@@ -2,15 +2,15 @@
 
 Посмотреть проект на [Github Page](https://kam1kazy.github.io/del42/).
 
-React JS
+- React JS
 
-MUI
+- MUI
 
-Redux Toolkit
+- Redux Toolkit
 
-RTKQuery
+- RTKQuery
 
-XLSX
+- XLSX
 
 
 ## Запуск проекта
