@@ -10,7 +10,7 @@
 
 - Redux Toolkit
 
-- RTKQuery
+- RTK Query
 
 - XLSX
 
