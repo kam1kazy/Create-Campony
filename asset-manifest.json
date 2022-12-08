@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/del42/static/css/main.529f53c9.css",
-    "main.js": "/del42/static/js/main.d0a8cccf.js",
+    "main.js": "/del42/static/js/main.c99b5a06.js",
     "static/media/Montserrat-Regular.eot": "/del42/static/media/Montserrat-Regular.e1f12f486a66da00a8fe.eot",
     "static/media/Montserrat-Regular.ttf": "/del42/static/media/Montserrat-Regular.6620f2d203ee807da36a.ttf",
     "static/media/Montserrat-SemiBold.eot": "/del42/static/media/Montserrat-SemiBold.ed588971a55361321e0c.eot",
@@ -17,10 +17,10 @@
     "static/media/nomenclatura.xlsx": "/del42/static/media/nomenclatura.8906d8146eb5cca41e1d.xlsx",
     "index.html": "/del42/index.html",
     "main.529f53c9.css.map": "/del42/static/css/main.529f53c9.css.map",
-    "main.d0a8cccf.js.map": "/del42/static/js/main.d0a8cccf.js.map"
+    "main.c99b5a06.js.map": "/del42/static/js/main.c99b5a06.js.map"
   },
   "entrypoints": [
     "static/css/main.529f53c9.css",
-    "static/js/main.d0a8cccf.js"
+    "static/js/main.c99b5a06.js"
   ]
 }
