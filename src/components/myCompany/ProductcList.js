@@ -1,14 +1,15 @@
 import React from 'react'
 import {
+  Box,
   Button,
   Typography,
   Grid,
   Card,
   CardContent,
   CardActions,
-  CardHeader,
   CardMedia,
 } from '@mui/material'
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { removeProduct } from '../../redux/slice/productsSlice'
@@ -43,46 +44,62 @@ export default function ProductList() {
 
       <Grid container spacing='20'>
         {productList.map((product) => (
-          <Grid item xs={12} sm={5} md={4} lg={3} key={product.id}>
-            <Card>
-              <CardHeader subheader={product.categories} />
-              <CardMedia
-                component='img'
-                height='164'
-                image={product.image}
-                alt={product.name}
-              />
-              <CardContent>
-                <Typography sx={{ mb: 1 }} variant='h6' component='div'>
-                  {product.name}
-                </Typography>
+          <Grid item xs={12} sm={6} md={4} key={product.id}>
+            <Card
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                minWidth: '300px',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  maxWidth: '100px',
+                  p: 1,
+                  pr: 2,
+                  boxSizing: 'border-box',
+                }}
+              >
+                <CardMedia
+                  component='img'
+                  height='124'
+                  image={product.image}
+                  alt={product.name}
+                />
+              </Box>
 
-                <Typography sx={{ mb: 2.5 }} color='text.secondary'>
-                  Номер товара: {product.id}
-                </Typography>
+              <Box
+                sx={{
+                  width: '100%',
+                }}
+              >
+                <CardContent sx={{ position: 'relative', pl: 0 }}>
+                  <Typography color='text.secondary' sx={{ fontSize: '13px' }}>
+                    Номенклатура:
+                  </Typography>
+                  <Typography sx={{ mb: 2.5 }}>{product.id}</Typography>
 
-                {stepCount === 2 ? null : (
-                  <>
-                    <Typography sx={{ mb: 1 }} variant='body2'>
-                      {product.desc}
-                    </Typography>
+                  <Typography color='text.secondary' sx={{ fontSize: '13px' }}>
+                    Название:
+                  </Typography>
+                  <Typography>{product.name}</Typography>
 
-                    <Typography sx={{ mb: 2 }} variant='body2'>
-                      {'"a benevolent smile"'}
-                    </Typography>
-
-                    <CardActions>
-                      <Button
-                        color='error'
-                        onClick={() => handleDeleteItem(product)}
-                        size='small'
-                      >
-                        Удалить
-                      </Button>
-                    </CardActions>
-                  </>
-                )}
-              </CardContent>
+                  {stepCount === 2 ? null : (
+                    <Button
+                      sx={{ position: 'absolute', top: '10px', right: '5px' }}
+                      onClick={() => handleDeleteItem(product)}
+                      size='small'
+                    >
+                      <DeleteOutlineRoundedIcon
+                        color='action'
+                        fontSize='small'
+                      />
+                    </Button>
+                  )}
+                </CardContent>
+              </Box>
             </Card>
           </Grid>
         ))}

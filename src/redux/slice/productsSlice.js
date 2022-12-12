@@ -20,7 +20,7 @@ const productsSlice = createSlice({
     },
     deleteChipProducts(state, action) {
       state.goods = state.goods.filter(
-        (item) => item.categories !== action.payload.name
+        (item) => item.name !== action.payload.name
       )
     },
     resetProducts(state) {

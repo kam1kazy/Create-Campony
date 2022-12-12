@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Button, Typography, Box } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetGoodsQuery } from '../../../redux'
 
@@ -10,6 +10,7 @@ import { resetProducts } from '../../../redux/slice/productsSlice'
 import ProductList from '../ProductcList'
 import SelectCategories from '../selects/SelectCategories'
 import SelectProducts from '../selects/SelectProducts'
+import ButtonUploadExcelFile from '../buttons/ButtonUploadExcelFile'
 
 // Selectors
 import {
@@ -51,50 +52,52 @@ export default function StepTwo() {
 
   return (
     <>
-      <Typography variant='h5' component='p' sx={{ mb: 4 }}>
-        Выберите группу предметов которую хотите рекламировать
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box>
+          <Typography variant='h5' component='p' sx={{ mb: 4 }}>
+            Выберите группу предметов которую хотите рекламировать
+          </Typography>
 
-      {/* В зависимости - была ли загружена номенклатура, мы выбираем какие категории отобразить */}
-      {/* Data - всю базу, nomenclaturaGoods - отфильтрованный список по загруженной номенклатуре */}
-      <SelectCategories
-        data={nomenclatura.length > 0 ? nomenclaturaGoods : data}
-        label='Группы предметов'
-      />
+          {/* В зависимости - была ли загружена номенклатура, мы выбираем какие категории отобразить */}
+          {/* Data - всю базу, nomenclaturaGoods - отфильтрованный список по загруженной номенклатуре */}
+          <SelectCategories
+            data={nomenclatura.length > 0 ? nomenclaturaGoods : data}
+            label='Группы предметов'
+          />
 
-      <Typography variant='h5' component='p' sx={{ mb: 2, mt: 4 }}>
-        Выберите предметы из группы
-      </Typography>
+          <Typography variant='h5' component='p' sx={{ mb: 2, mt: 4 }}>
+            Выберите предметы из группы
+          </Typography>
 
-      <SelectProducts
-        helperText
-        label={
-          !selectedCategories.length ? 'Сначала выберите группу' : 'Предметы'
-        }
-      />
-      <Typography variant='h5' component='p' sx={{ mb: 4, mt: 4 }}>
-        Товары в рекламу
-        {productList.length > 0 ? (
-          <>
-            <Typography
-              variant='h6'
-              color='secondary'
-              component='span'
-              sx={{ ml: 2, mr: 2 }}
-            >
-              {productList.length}
-            </Typography>
-            <Button
-              variant='outlined'
-              color='secondary'
-              onClick={() => dispatch(resetProducts())}
-            >
-              Сбросить
-            </Button>
-          </>
-        ) : null}
-      </Typography>
-
+          <SelectProducts
+            helperText
+            label={
+              !selectedCategories.length
+                ? 'Сначала выберите группу'
+                : 'Предметы'
+            }
+          />
+          <Typography variant='h5' component='p' sx={{ mb: 4, mt: 4 }}>
+            {productList.length > 0 ? (
+              <>
+                Товары в рекламу
+                <Typography variant='h6' component='span' sx={{ ml: 2, mr: 2 }}>
+                  {productList.length}
+                </Typography>
+                <Button
+                  variant='outlined'
+                  onClick={() => dispatch(resetProducts())}
+                >
+                  Сбросить
+                </Button>
+              </>
+            ) : null}
+          </Typography>
+        </Box>
+        <Box sx={{ mt: 7 }}>
+          <ButtonUploadExcelFile name='Загрузить номенклатуру' />
+        </Box>
+      </Box>
       <ProductList />
     </>
   )

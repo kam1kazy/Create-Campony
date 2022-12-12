@@ -9,6 +9,11 @@ import {
   Select,
   Chip,
 } from '@mui/material'
+
+// ICONS
+import CancelIcon from '@mui/icons-material/Cancel'
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
+
 import {
   productListSelector,
   selectedCategoriesSelector,
@@ -42,8 +47,7 @@ const MenuProps = {
 // Стили выбранного Select
 function getStyles(name, groupName) {
   return {
-    backgroundColor:
-      groupName.indexOf(name) === -1 ? null : 'rgba(25, 118, 210, 0.08)',
+    color: groupName.indexOf(name) === -1 ? null : '#fa7d47',
   }
 }
 
@@ -80,13 +84,31 @@ export default function SelectCategories({ label, data }) {
 
   // Reset categories and products
   const handleResetCategory = () => {
-    dispatch(resetCategories())
-    dispatch(resetProducts())
+    if (selectedCategories.length > 0) {
+      dispatch(resetCategories())
+      dispatch(resetProducts())
+    } else {
+      let count = 0
+
+      data.forEach(function (item, i, arr) {
+        if (data.includes(item)) {
+          dispatch(addCategories({ item }))
+        } else {
+          count = count + 1
+
+          if (arr.length === count) {
+            arr.forEach(function (item, i) {
+              dispatch(removeCategories(item))
+            })
+          }
+        }
+      })
+    }
   }
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 400 }}>
+      <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
         <InputLabel id='multiple-chip-label'>{label}</InputLabel>
         <Select
           labelId='multiple-chip-label'
@@ -100,7 +122,12 @@ export default function SelectCategories({ label, data }) {
                 <Chip
                   key={value}
                   label={value}
-                  sx={{ zIndex: '999999' }}
+                  sx={{ zIndex: '1' }}
+                  deleteIcon={
+                    <CancelIcon
+                      onMouseDown={(event) => event.stopPropagation()}
+                    />
+                  }
                   onDelete={() => handleDeleteCategory(value)}
                 />
               ))}
@@ -117,7 +144,9 @@ export default function SelectCategories({ label, data }) {
               }}
               onClick={handleResetCategory}
             >
-              --- сбросить всё ---
+              {selectedCategories.length > 0
+                ? '-- Удалить всё --'
+                : '-- Добавить всё --'}
             </MenuItem>
             {data.map((item) => {
               return (
@@ -127,6 +156,9 @@ export default function SelectCategories({ label, data }) {
                   value={item.name}
                   style={getStyles(item.name, groupName, theme)}
                 >
+                  {selectedCategories.includes(item) ? (
+                    <CheckRoundedIcon sx={{ pr: 1 }} />
+                  ) : null}
                   {item.name}
                 </MenuItem>
               )

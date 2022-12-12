@@ -1,7 +1,11 @@
 import React from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct, removeProduct } from '../../../redux/slice/productsSlice'
+import {
+  addProduct,
+  removeProduct,
+  deleteChipProducts,
+} from '../../../redux/slice/productsSlice'
 import {
   productListSelector,
   selectedCategoriesSelector,
@@ -21,6 +25,10 @@ import {
   Typography,
 } from '@mui/material'
 
+// ICONS
+import CancelIcon from '@mui/icons-material/Cancel'
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
+
 // Стили выпадающего списка
 const ITEM_HEIGHT = 48
 const MenuProps = {
@@ -35,8 +43,7 @@ const MenuProps = {
 // Здесь задается цвет выбранной категории
 function getStyles(name, groupName) {
   return {
-    backgroundColor:
-      groupName.indexOf(name) === -1 ? null : 'rgba(25, 118, 210, 0.08)',
+    color: groupName.indexOf(name) === -1 ? null : '#fa7d47',
   }
 }
 
@@ -60,6 +67,11 @@ export default function SelectProducts({ label, helperText }) {
     }
   }
 
+  // Delete Chips Categories
+  const handleDeleteChip = (name) => {
+    dispatch(deleteChipProducts({ name }))
+  }
+
   // Выбрать всю всю категорию
   const selectedAllCategory = (item) => {
     let count = 0
@@ -80,7 +92,7 @@ export default function SelectProducts({ label, helperText }) {
   }
 
   return (
-    <FormControl sx={{ m: 1, width: 400 }}>
+    <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
       <InputLabel id='multiple-chip-label'>{label}</InputLabel>
 
       <Select
@@ -92,7 +104,17 @@ export default function SelectProducts({ label, helperText }) {
         renderValue={(selected) => (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
             {groupName.map((value) => (
-              <Chip key={value} label={value} />
+              <Chip
+                key={value}
+                label={value}
+                sx={{ zIndex: '1' }}
+                deleteIcon={
+                  <CancelIcon
+                    onMouseDown={(event) => event.stopPropagation()}
+                  />
+                }
+                onDelete={() => handleDeleteChip(value)}
+              />
             ))}
           </Box>
         )}
@@ -119,7 +141,6 @@ export default function SelectProducts({ label, helperText }) {
           return (
             <Box key={item.id} sx={{ borderBottom: '1px solid #e9ecf1' }}>
               {/* ListSubheader  -  это имя категории в списке */}
-
               <ListSubheader
                 sx={[
                   {
@@ -127,13 +148,11 @@ export default function SelectProducts({ label, helperText }) {
                     justifyContent: 'space-between',
                     cursor: 'pointer',
                     backgroundColor: '#fcfcfc',
-                    pb: 1,
-                    pt: 1,
-                    '&:hover': { backgroundColor: '#f2f2f2' },
+                    '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' },
                   },
-                  boolean && {
-                    backgroundColor: '#ebf4fc',
-                  },
+                  // boolean && {
+                  //   backgroundColor: '#ffb494',
+                  // },
                 ]}
                 onClick={() => selectedAllCategory(item)}
               >
@@ -151,11 +170,13 @@ export default function SelectProducts({ label, helperText }) {
                   style={getStyles(item.name, groupName, theme)}
                   sx={{
                     flexFlow: 'row',
-                    alignItems: 'flex-start',
-                    pt: 2,
-                    pb: 2,
+                    alignItems: 'center',
+                    pt: 1,
                   }}
                 >
+                  {productList.includes(item) ? (
+                    <CheckRoundedIcon sx={{ pr: 1 }} />
+                  ) : null}
                   <CardMedia
                     component='img'
                     image={item.image}

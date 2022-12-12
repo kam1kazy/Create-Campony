@@ -37,9 +37,9 @@ export default function Navigations() {
 
   return (
     <>
-      <Card variant='outlined' sx={{ mt: 4 }}>
+      <Card variant='outlined' sx={{ mt: 2 }}>
         <CardContent>
-          <Box sx={{ width: '100%', marginBottom: '10px', marginTop: '10px' }}>
+          <Box sx={{ width: '100%', marginTop: '5px' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs
                 value={value}
@@ -55,7 +55,7 @@ export default function Navigations() {
         </CardContent>
       </Card>
 
-      <Card variant='outlined' sx={{ mt: 4, mb: 8 }}>
+      <Card variant='outlined' sx={{ mt: 3 }}>
         <CardContent>
           <TabPanel value={value} index={0}>
             <CreateCompany />

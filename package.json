@@ -7,7 +7,7 @@
     "starter"
   ],
   "main": "src/index.js",
-  "homepage": "https://kam1kazy.github.io/del42/",
+  "homepage": "https://kam1kazy.github.io/Create-Campony/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
