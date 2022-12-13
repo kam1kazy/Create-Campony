@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -58,8 +58,8 @@ export default function SelectProducts({ label, helperText }) {
 
   // USE SELECTOR
   const selectedProductList = useSelector(selectedProductsSelector)
-  const productsList = useSelector(productListSelector)
   const selectedCategories = useSelector(selectedCategoriesSelector)
+  const productsList = useSelector(productListSelector)
 
   // Chips - выбранные категории в Input Select, имя в овальном блоке
   const groupName = selectedProductList.map((item) => item.name)
@@ -97,6 +97,17 @@ export default function SelectProducts({ label, helperText }) {
       }
     })
   }
+
+  // Когда меняется список выбранных категорий, добавляет все товары из этих категорий в глобальное состояние
+  useEffect(() => {
+    selectedCategories.forEach((cat) => {
+      cat.products.forEach((item) => {
+        if (!productsList.includes(item)) {
+          dispatch(setProductsList(item))
+        }
+      })
+    })
+  }, [selectedCategories])
 
   return (
     <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
@@ -167,10 +178,6 @@ export default function SelectProducts({ label, helperText }) {
 
               {/* Здесь рендерит список доступных продукций в категории */}
               {item.products.map((item) => {
-                if (!productsList.includes(item)) {
-                  dispatch(setProductsList(item))
-                }
-
                 return (
                   <MenuItem
                     key={item.id}
