@@ -15,7 +15,7 @@ import CancelIcon from '@mui/icons-material/Cancel'
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 
 import {
-  productListSelector,
+  selectedProductsSelector,
   selectedCategoriesSelector,
 } from '../../../redux/selectors'
 
@@ -56,7 +56,7 @@ export default function SelectCategories({ label, data }) {
   const dispatch = useDispatch()
 
   // USE SELECTOR
-  const productList = useSelector(productListSelector)
+  const selectedProductList = useSelector(selectedProductsSelector)
   const selectedCategories = useSelector(selectedCategoriesSelector)
 
   const groupName = selectedCategories.map((item) => item.name)
@@ -69,7 +69,7 @@ export default function SelectCategories({ label, data }) {
       dispatch(removeCategories({ item }))
 
       item.products.forEach(function (product, i) {
-        if (productList.includes(product)) {
+        if (selectedProductList.includes(product)) {
           dispatch(removeProduct(product))
         }
       })

@@ -15,24 +15,28 @@ import { useSelector, useDispatch } from 'react-redux'
 import { removeProduct } from '../../redux/slice/productsSlice'
 
 // Selectors
-import { productListSelector, stepCountSelector } from '../../redux/selectors'
+import {
+  selectedProductsSelector,
+  stepCountSelector,
+} from '../../redux/selectors'
 
-export default function ProductList() {
+export default function selectedProductList() {
   const dispatch = useDispatch()
   // SELECTORS from reducer
-  const productList = useSelector(productListSelector)
+
+  const selectedProductList = useSelector(selectedProductsSelector)
   const stepCount = useSelector(stepCountSelector)
 
   // Delete selected product
   const handleDeleteItem = (product) => {
-    if (!productList.includes(product.id)) {
+    if (!selectedProductList.includes(product.id)) {
       dispatch(removeProduct(product))
     }
   }
 
   return (
     <>
-      {!productList.length > 0 ? (
+      {!selectedProductList.length > 0 ? (
         <Typography
           variant='h6'
           component='p'
@@ -43,7 +47,7 @@ export default function ProductList() {
       ) : null}
 
       <Grid container spacing='20'>
-        {productList.map((product) => (
+        {selectedProductList.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Card
               sx={{

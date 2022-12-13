@@ -5,10 +5,13 @@ import {
   addProduct,
   removeProduct,
   deleteChipProducts,
+  setProductsList,
 } from '../../../redux/slice/productsSlice'
+
 import {
-  productListSelector,
+  selectedProductsSelector,
   selectedCategoriesSelector,
+  productListSelector,
 } from '../../../redux/selectors'
 
 import {
@@ -23,6 +26,8 @@ import {
   ListSubheader,
   CardMedia,
   Typography,
+  Autocomplete,
+  TextField,
 } from '@mui/material'
 
 // ICONS
@@ -52,15 +57,16 @@ export default function SelectProducts({ label, helperText }) {
   const dispatch = useDispatch()
 
   // USE SELECTOR
-  const productList = useSelector(productListSelector)
+  const selectedProductList = useSelector(selectedProductsSelector)
+  const productsList = useSelector(productListSelector)
   const selectedCategories = useSelector(selectedCategoriesSelector)
 
   // Chips - выбранные категории в Input Select, имя в овальном блоке
-  const groupName = productList.map((item) => item.name)
+  const groupName = selectedProductList.map((item) => item.name)
 
   // Delete / Selected product
   const handleSelectProduct = (item) => {
-    if (!productList.includes(item)) {
+    if (!selectedProductList.includes(item)) {
       dispatch(addProduct({ item }))
     } else {
       dispatch(removeProduct(item))
@@ -74,14 +80,15 @@ export default function SelectProducts({ label, helperText }) {
 
   // Выбрать всю всю категорию
   const selectedAllCategory = (item) => {
+    // Счетчик чтобы узнать, весь ли список выбрал
     let count = 0
 
     item.products.forEach(function (item, i, arr) {
-      if (!productList.includes(item)) {
+      if (!selectedProductList.includes(item)) {
         dispatch(addProduct({ item }))
       } else {
         count = count + 1
-
+        // Если длинна массива равна счетчику, значит вся категория выбрана
         if (arr.length === count) {
           arr.forEach(function (item, i) {
             dispatch(removeProduct(item))
@@ -94,13 +101,14 @@ export default function SelectProducts({ label, helperText }) {
   return (
     <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
       <InputLabel id='multiple-chip-label'>{label}</InputLabel>
-
       <Select
         labelId='multiple-chip-label'
         id='multiple-chip'
         multiple
         value={groupName}
         input={<OutlinedInput id='select-multiple-chip' label={label} />}
+        MenuProps={MenuProps}
+        disabled={selectedCategories.length === 0 ? true : false}
         renderValue={(selected) => (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
             {groupName.map((value) => (
@@ -118,8 +126,6 @@ export default function SelectProducts({ label, helperText }) {
             ))}
           </Box>
         )}
-        MenuProps={MenuProps}
-        disabled={selectedCategories.length === 0 ? true : false}
       >
         {/* Рендер категорий, внутри них уже рендер продуктов */}
         {selectedCategories.map((item, id) => {
@@ -130,7 +136,7 @@ export default function SelectProducts({ label, helperText }) {
           let boolean = false
 
           selectedCategories[id].products.forEach(function (product, id, arr) {
-            if (productList.includes(product)) {
+            if (selectedProductList.includes(product)) {
               count++
             }
             if (arr.length === count) {
@@ -147,12 +153,10 @@ export default function SelectProducts({ label, helperText }) {
                     display: 'flex',
                     justifyContent: 'space-between',
                     cursor: 'pointer',
+                    zIndex: '2',
                     backgroundColor: '#fcfcfc',
-                    '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' },
+                    '&:hover': { backgroundColor: 'rgb(249 249 249)' },
                   },
-                  // boolean && {
-                  //   backgroundColor: '#ffb494',
-                  // },
                 ]}
                 onClick={() => selectedAllCategory(item)}
               >
@@ -162,60 +166,65 @@ export default function SelectProducts({ label, helperText }) {
               </ListSubheader>
 
               {/* Здесь рендерит список доступных продукций в категории */}
-              {item.products.map((item) => (
-                <MenuItem
-                  key={item.id}
-                  onClick={() => handleSelectProduct(item)}
-                  value={item.name}
-                  style={getStyles(item.name, groupName, theme)}
-                  sx={{
-                    flexFlow: 'row',
-                    alignItems: 'center',
-                    pt: 1,
-                  }}
-                >
-                  {productList.includes(item) ? (
-                    <CheckRoundedIcon sx={{ pr: 1 }} />
-                  ) : null}
-                  <CardMedia
-                    component='img'
-                    image={item.image}
-                    alt={item.name}
+              {item.products.map((item) => {
+                if (!productsList.includes(item)) {
+                  dispatch(setProductsList(item))
+                }
+
+                return (
+                  <MenuItem
+                    key={item.id}
+                    onClick={() => handleSelectProduct(item)}
+                    value={item.name}
+                    style={getStyles(item.name, groupName, theme)}
                     sx={{
-                      objectFit: 'contain',
-                      maxWidth: '60px',
-                      maxHeight: '60px',
-                      mr: 2,
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      justifyContent: 'space-between',
-                      display: 'flex',
-                      width: '100%',
+                      flexFlow: 'row',
+                      alignItems: 'center',
+                      pt: 1,
                     }}
                   >
-                    <Box>
-                      <Typography variant='p' sx={{ mb: 1 }}>
-                        {item.name}
-                      </Typography>
-                      <Typography
-                        variant='caption'
-                        display='block'
-                        color='text.secondary'
-                      >
-                        {item.categories}
-                      </Typography>
+                    {selectedProductList.includes(item) ? (
+                      <CheckRoundedIcon sx={{ pr: 1 }} />
+                    ) : null}
+                    <CardMedia
+                      component='img'
+                      image={item.image}
+                      alt={item.name}
+                      sx={{
+                        objectFit: 'contain',
+                        maxWidth: '60px',
+                        maxHeight: '60px',
+                        mr: 2,
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        justifyContent: 'space-between',
+                        display: 'flex',
+                        width: '100%',
+                      }}
+                    >
+                      <Box>
+                        <Typography variant='p' sx={{ mb: 1 }}>
+                          {item.name}
+                        </Typography>
+                        <Typography
+                          variant='caption'
+                          display='block'
+                          color='text.secondary'
+                        >
+                          {item.categories}
+                        </Typography>
+                      </Box>
+                      <Typography variant='caption'>№{item.id}</Typography>
                     </Box>
-                    <Typography variant='caption'>№{item.id}</Typography>
-                  </Box>
-                </MenuItem>
-              ))}
+                  </MenuItem>
+                )
+              })}
             </Box>
           )
         })}
       </Select>
-
       {helperText ? (
         <FormHelperText sx={{ mt: 2 }}>
           Выберите от 1 до 50 предметов

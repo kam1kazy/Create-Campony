@@ -7,7 +7,6 @@ const nomenclaturaSlice = createSlice({
   },
   reducers: {
     setNomenclatura(state, action) {
-      console.log(action.payload)
       state.array = action.payload
     },
     resetNomenclatura(state) {

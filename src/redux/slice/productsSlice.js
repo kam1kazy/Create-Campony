@@ -3,11 +3,15 @@ import { createSlice } from '@reduxjs/toolkit'
 const productsSlice = createSlice({
   name: 'Product Data',
   initialState: {
-    goods: [],
+    goodsSelected: [],
+    goodsList: [],
   },
   reducers: {
     addProduct(state, action) {
-      state.goods.push(action.payload.item)
+      state.goodsSelected.push(action.payload.item)
+    },
+    setProductsList(state, action) {
+      state.goodsList.push(action.payload)
     },
     toggleSelected(state, action) {
       const toggledSelect = state.products.find(
@@ -16,15 +20,20 @@ const productsSlice = createSlice({
       toggledSelect.active = !toggledSelect.active
     },
     removeProduct(state, action) {
-      state.goods = state.goods.filter((item) => item.id !== action.payload.id)
+      state.goodsSelected = state.goodsSelected.filter(
+        (item) => item.id !== action.payload.id
+      )
     },
     deleteChipProducts(state, action) {
-      state.goods = state.goods.filter(
+      state.goodsSelected = state.goodsSelected.filter(
         (item) => item.name !== action.payload.name
       )
     },
     resetProducts(state) {
-      state.goods = []
+      state.goodsSelected = []
+    },
+    resetProductsList(state) {
+      state.goodsList = []
     },
   },
 })
@@ -35,6 +44,8 @@ export const {
   removeProduct,
   deleteChipProducts,
   resetProducts,
+  setProductsList,
+  resetProductsList,
 } = productsSlice.actions
 
 export default productsSlice.reducer

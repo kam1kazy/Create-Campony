@@ -7,23 +7,15 @@ import { nextStep } from '../../../redux/slice/stepCountSlice'
 // Slices
 import { resetCategories } from '../../../redux/slice/selectedCategories'
 import { resetProducts } from '../../../redux/slice/productsSlice'
-import {
-  setNomenclatura,
-  resetNomenclatura,
-} from '../../../redux/slice/nomenclaturaSlice'
+import { setNomenclatura } from '../../../redux/slice/nomenclaturaSlice'
 
-export default function ButtonUploadExcelFile({
-  name,
-  disabled,
-  nomenclaturaGoods,
-}) {
+export default function ButtonUploadExcelFile({ name, disabled, size }) {
   const dispatch = useDispatch()
   const step = useSelector((state) => state.stepCountReducer.step)
 
   // Получаем Excel файл и рендерим из него json
   const readUploadFile = (e) => {
     e.preventDefault()
-    dispatch(resetNomenclatura())
 
     if (e.target.files) {
       const reader = new FileReader()
@@ -33,7 +25,6 @@ export default function ButtonUploadExcelFile({
         const sheetName = workbook.SheetNames[0]
         const worksheet = workbook.Sheets[sheetName]
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
-        console.log(jsonData)
         // Делаем фильтр для комфортной работы с данными и отправляем в reducer
         const jsonFilter = jsonData.map(function (value) {
           return Object.values(value)[0]
@@ -46,7 +37,6 @@ export default function ButtonUploadExcelFile({
           dispatch(resetCategories())
           dispatch(resetProducts())
           dispatch(setNomenclatura(jsonFilter))
-          nomenclaturaGoods()
         }
       }
       reader.readAsArrayBuffer(e.target.files[0])
@@ -72,6 +62,7 @@ export default function ButtonUploadExcelFile({
           component='span'
           size='large'
           disabled={disabled}
+          sx={{ fontSize: '12px' }}
         >
           {name}
         </Button>

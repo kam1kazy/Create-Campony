@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, Typography, Box } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetGoodsQuery } from '../../../redux'
@@ -14,7 +14,7 @@ import ButtonUploadExcelFile from '../buttons/ButtonUploadExcelFile'
 
 // Selectors
 import {
-  productListSelector,
+  selectedProductsSelector,
   selectedCategoriesSelector,
   nomenclaturaSelector,
 } from '../../../redux/selectors'
@@ -27,7 +27,7 @@ export default function StepTwo() {
 
   // SELECTORS from Reducer
   const selectedCategories = useSelector(selectedCategoriesSelector)
-  const productList = useSelector(productListSelector)
+  const selectedProductList = useSelector(selectedProductsSelector)
   const nomenclatura = useSelector(nomenclaturaSelector)
 
   if (isLoading) return <Typography component='p'>Загрузка...</Typography>
@@ -78,11 +78,11 @@ export default function StepTwo() {
             }
           />
           <Typography variant='h5' component='p' sx={{ mb: 4, mt: 4 }}>
-            {productList.length > 0 ? (
+            {selectedProductList.length > 0 ? (
               <>
                 Товары в рекламу
                 <Typography variant='h6' component='span' sx={{ ml: 2, mr: 2 }}>
-                  {productList.length}
+                  {selectedProductList.length}
                 </Typography>
                 <Button
                   variant='outlined'
@@ -95,7 +95,7 @@ export default function StepTwo() {
           </Typography>
         </Box>
         <Box sx={{ mt: 7 }}>
-          <ButtonUploadExcelFile name='Загрузить номенклатуру' />
+          <ButtonUploadExcelFile name='Загрузить номенклатуру' size='small' />
         </Box>
       </Box>
       <ProductList />

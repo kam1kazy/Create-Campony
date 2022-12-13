@@ -24,7 +24,6 @@ export default function StepOne() {
         responseType: 'blob',
       })
       .then((res) => {
-        console.log(res.data)
         fileDownload(res.data, 'templateExcel.xlsx')
       })
   }

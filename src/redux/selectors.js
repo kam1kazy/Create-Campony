@@ -1,5 +1,7 @@
 export const companyNameSelector = (state) => state.companyNameReducer.name
-export const productListSelector = (state) => state.productsReducer.goods
+export const selectedProductsSelector = (state) =>
+  state.productsReducer.goodsSelected
+export const productListSelector = (state) => state.productsReducer.goodsList
 export const selectedCategoriesSelector = (state) =>
   state.selectedCategoriesReducer.categories
 export const nomenclaturaSelector = (state) => state.nomenclaturaReducer.array
