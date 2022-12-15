@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
 import { Tabs, Tab, Box, Card, CardContent } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
+import blue from '@mui/material/colors/blue'
 
 import CreateCompany from './myCompany/CreateCompany'
 
@@ -45,10 +46,14 @@ export default function Navigations() {
                 value={value}
                 onChange={handleChange}
                 aria-label='basic tabs example'
+                textColor='rgba(0, 0, 0, 0.87)'
+                indicatorColor='secondary'
               >
                 <Tab label='Акции' {...a11yProps(0)} />
                 <Tab label='Карточка товара' {...a11yProps(1)} />
                 <Tab label='Каталог' {...a11yProps(2)} />
+                <Tab label='Поиск' {...a11yProps(3)} />
+                <Tab label='Рекомендации на главной' {...a11yProps(4)} />
               </Tabs>
             </Box>
           </Box>
@@ -65,6 +70,12 @@ export default function Navigations() {
           </TabPanel>
           <TabPanel value={value} index={2}>
             Страница каталога
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            Поиск
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            Рекомендации на главной
           </TabPanel>
         </CardContent>
       </Card>

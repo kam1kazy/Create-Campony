@@ -7,11 +7,11 @@ function App() {
     <>
       <Container maxWidth='lg'>
         <Typography
-          variant='h4'
+          variant='h5'
           component='h1'
           sx={{ textTransform: 'uppercase', marginTop: '20px' }}
         >
-          Мои компании
+          Создание компании
         </Typography>
 
         <Navigations />

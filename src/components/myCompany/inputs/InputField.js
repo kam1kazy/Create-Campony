@@ -33,7 +33,7 @@ export default function InputField({ name, label, type }) {
       as={TextField}
       onChange={handleCheckInput}
       error={emptyInput ? true : false}
-      helperText={emptyInput ? 'Пустое поле!' : ' '}
+      helperText={emptyInput ? 'Заполнить поле' : ' '}
     />
   )
 }
