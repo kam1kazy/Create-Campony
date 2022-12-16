@@ -11,6 +11,7 @@ import ProductList from '../ProductcList'
 import SelectCategories from '../selects/SelectCategories'
 import SelectProducts from '../selects/SelectProducts'
 import ButtonUploadExcelFile from '../buttons/ButtonUploadExcelFile'
+import SearchInput from '../inputs/SearchInput'
 
 // Selectors
 import {
@@ -68,6 +69,8 @@ export default function StepTwo() {
           <Typography variant='h5' component='p' sx={{ mb: 2, mt: 4 }}>
             Выберите предметы из группы
           </Typography>
+
+          <SearchInput />
 
           <SelectProducts
             helperText

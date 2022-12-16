@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Tabs, Tab, Box, Card, CardContent } from '@mui/material'
-import { createTheme } from '@mui/material/styles'
-import blue from '@mui/material/colors/blue'
-
 import CreateCompany from './myCompany/CreateCompany'
 
 function TabPanel(props) {
@@ -46,7 +43,7 @@ export default function Navigations() {
                 value={value}
                 onChange={handleChange}
                 aria-label='basic tabs example'
-                textColor='rgba(0, 0, 0, 0.87)'
+                textColor='inherit'
                 indicatorColor='secondary'
               >
                 <Tab label='Акции' {...a11yProps(0)} />

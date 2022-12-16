@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
+
+// SLICES
 import {
   addProduct,
   removeProduct,
@@ -8,12 +10,14 @@ import {
   setProductsList,
 } from '../../../redux/slice/productsSlice'
 
+// SELECTORS
 import {
   selectedProductsSelector,
   selectedCategoriesSelector,
   productListSelector,
 } from '../../../redux/selectors'
 
+// MUI Components
 import {
   Box,
   OutlinedInput,
