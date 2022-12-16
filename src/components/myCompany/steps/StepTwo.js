@@ -72,14 +72,14 @@ export default function StepTwo() {
 
           <SearchInput />
 
-          <SelectProducts
+          {/* <SelectProducts
             helperText
             label={
               !selectedCategories.length
                 ? 'Сначала выберите группу'
                 : 'Предметы'
             }
-          />
+          /> */}
           <Typography variant='h5' component='p' sx={{ mb: 4, mt: 4 }}>
             {selectedProductList.length > 0 ? (
               <>
