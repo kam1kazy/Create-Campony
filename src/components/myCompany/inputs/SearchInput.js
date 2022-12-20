@@ -17,6 +17,7 @@ import {
   removeProduct,
   deleteChipProducts,
   setProductsList,
+  removeGroupSelectedProduct,
 } from '../../../redux/slice/productsSlice'
 
 export default function SearchInput() {
@@ -45,15 +46,18 @@ export default function SearchInput() {
     // Счетчик чтобы узнать, весь ли список выбрал
     let count = 0
 
-    categories.products.forEach(function (item, i, arr) {
-      if (!selectedProductList.includes(item)) {
-        dispatch(addProduct({ item }))
+    categories.children.forEach(function (item, i, arr) {
+      let product = productsList.find((product) => product.name === item.key)
+
+      console.log(arr)
+      if (!selectedProductList.includes(product)) {
+        dispatch(addProduct({ product }))
       } else {
         count = count + 1
         // Если длинна массива равна счетчику, значит вся категория выбрана
         if (arr.length === count) {
           arr.forEach(function (item, i) {
-            dispatch(removeProduct(item))
+            dispatch(removeGroupSelectedProduct(item.key))
           })
         }
       }
@@ -98,8 +102,6 @@ export default function SearchInput() {
         <TextField {...products} label='Предметы' placeholder='Поиск...' />
       )}
       renderGroup={(categories) => {
-        console.log(categories)
-
         return (
           <li key={categories.key}>
             <GroupHeader
