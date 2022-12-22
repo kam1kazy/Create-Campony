@@ -13,7 +13,7 @@ export default function InputField({ name, label, type }) {
 
   // Контролируемый Inupt через глобальное состояние (state reducer)
   const handleCheckInput = (e) => {
-    dispatch(changeName(e.target.value))
+    dispatch(changeName(e.target.value.trimStart()))
 
     if (e.target.value === '') {
       useEmptyInput(true)
@@ -33,7 +33,8 @@ export default function InputField({ name, label, type }) {
       as={TextField}
       onChange={handleCheckInput}
       error={emptyInput ? true : false}
-      helperText={emptyInput ? 'Заполнить поле' : ' '}
+      sx={{ width: 300 }}
+      helperText={emptyInput ? 'Пожалуйста, введите название компании' : ' '}
     />
   )
 }

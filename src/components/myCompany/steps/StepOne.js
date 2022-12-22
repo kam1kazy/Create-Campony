@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import fileDownload from 'js-file-download'
 import { useSelector } from 'react-redux'
@@ -16,6 +16,7 @@ import nomenclaturaFile from '../../../assets/nomenclatura.xlsx'
 
 export default function StepOne() {
   const companyName = useSelector(companyNameSelector)
+  const [toggleActiveButton, setToggleActiveButton] = useState(true)
 
   // Download Template - link
   const handleDownload = async () => {
@@ -27,6 +28,15 @@ export default function StepOne() {
         fileDownload(res.data, 'templateExcel.xlsx')
       })
   }
+
+  // Проверка название компании, что оно состоит не из одних пробелов
+  useEffect(() => {
+    if (companyName.trim().length > 0) {
+      setToggleActiveButton(false)
+    } else {
+      setToggleActiveButton(true)
+    }
+  }, [companyName])
 
   return (
     <>
@@ -46,11 +56,11 @@ export default function StepOne() {
             <ButtonSelectProducts
               name='Выбрать предметы'
               nextStepActive
-              disabled={!companyName}
+              disabled={toggleActiveButton}
             />
             <ButtonUploadExcelFile
               name='Загрузить номенклатуру'
-              disabled={!companyName}
+              disabled={toggleActiveButton}
             />
           </Box>
 

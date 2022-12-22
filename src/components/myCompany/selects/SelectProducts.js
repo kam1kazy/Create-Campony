@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -113,6 +113,9 @@ export default function SelectProducts({ label, helperText }) {
     })
   }, [selectedCategories])
 
+  const chipTags = useRef(null)
+  console.log(chipTags.current.length)
+
   return (
     <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
       <InputLabel id='multiple-chip-label'>{label}</InputLabel>
@@ -125,7 +128,10 @@ export default function SelectProducts({ label, helperText }) {
         MenuProps={MenuProps}
         disabled={selectedCategories.length === 0 ? true : false}
         renderValue={(selected) => (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+          <Box
+            ref={chipTags}
+            sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}
+          >
             {groupName.map((value) => (
               <Chip
                 key={value}

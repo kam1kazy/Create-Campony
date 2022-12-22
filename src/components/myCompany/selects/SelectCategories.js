@@ -112,7 +112,7 @@ export default function SelectCategories({ label, data }) {
         <InputLabel id='multiple-chip-label'>{label}</InputLabel>
         <Select
           labelId='multiple-chip-label'
-          id='multiple-chip'
+          id='multiple-chip-products'
           multiple
           value={groupName}
           input={<OutlinedInput id='select-multiple-chip' label={label} />}

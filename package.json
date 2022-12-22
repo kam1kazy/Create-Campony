@@ -7,7 +7,7 @@
     "starter"
   ],
   "main": "src/index.js",
-  "homepage": "https://kam1kazy.github.io/Create-Campony/",
+  "homepage": "https://kam1kazy.github.io/create-company/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
