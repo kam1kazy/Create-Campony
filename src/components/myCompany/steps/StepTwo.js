@@ -31,7 +31,8 @@ export default function StepTwo() {
   const selectedProductList = useSelector(selectedProductsSelector)
   const nomenclatura = useSelector(nomenclaturaSelector)
 
-  if (isLoading) return <Typography component='p'>Загрузка...</Typography>
+  if (isLoading)
+    return <Typography component='p'>Загрузка товаров...</Typography>
 
   // Если была загружена номенклатура, то отфильтровать data
   const nomenclaturaGoods = data
@@ -56,7 +57,7 @@ export default function StepTwo() {
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
           <Typography variant='h5' component='p' sx={{ mb: 4 }}>
-            Выберите группу предметов которую хотите рекламировать
+            Выберите группы предметов, которые хотите рекламировать
           </Typography>
 
           {/* В зависимости - была ли загружена номенклатура, мы выбираем какие категории отобразить */}
@@ -75,9 +76,7 @@ export default function StepTwo() {
           <SelectProducts
             helperText
             label={
-              !selectedCategories.length
-                ? 'Сначала выберите группу'
-                : 'Предметы'
+              !selectedCategories.length ? 'Сначала выберите группу' : 'Предмет'
             }
           />
           <Typography variant='h5' component='p' sx={{ mb: 4, mt: 4 }}>

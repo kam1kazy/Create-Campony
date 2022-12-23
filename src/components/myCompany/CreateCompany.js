@@ -17,7 +17,7 @@ import { nextStep, backStep } from '../../redux/slice/stepCountSlice'
 import StepOne from './steps/StepOne'
 import StepTwo from './steps/StepTwo'
 import StepThree from './steps/StepThree'
-import DialogBackStep from './dialogs/DialogBackStep'
+import DialogButtonGoToBack from './dialogs/DialogBackStep'
 
 export default function CreateCompany() {
   return (
@@ -63,11 +63,12 @@ export function FormikStepper({ children, ...props }) {
 
   const goToBackStep = () => {
     dispatch(backStep())
+
     if (step === 1) {
-      dispatch(resetCategories())
-      dispatch(resetProducts())
-      dispatch(resetNomenclatura())
-      dispatch(resetName())
+      // dispatch(resetCategories())
+      // dispatch(resetProducts())
+      // dispatch(resetNomenclatura())
+      // dispatch(resetName())
     }
   }
 
@@ -86,7 +87,28 @@ export function FormikStepper({ children, ...props }) {
         <Stepper activeStep={step} sx={{ mt: 0, mb: 5 }}>
           {childrenArray.map((child) => {
             return (
-              <Step key={child.props.label}>
+              <Step
+                key={child.props.label}
+                sx={{
+                  '& .MuiStepLabel-root .Mui-completed': {
+                    color: 'success.main', // circle color (COMPLETED)
+                  },
+                  '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel':
+                    {
+                      color: 'grey.500', // Just text label (COMPLETED)
+                    },
+                  '& .MuiStepLabel-root .Mui-active': {
+                    color: '#ba68c8', // circle color (ACTIVE)
+                  },
+                  '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
+                    {
+                      color: 'common.white', // Just text label (ACTIVE)
+                    },
+                  '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
+                    fill: 'common.white', // circle's number (ACTIVE)
+                  },
+                }}
+              >
                 <StepLabel>{child.props.label}</StepLabel>
               </Step>
             )
@@ -107,7 +129,7 @@ export function FormikStepper({ children, ...props }) {
           {step > 0 ? (
             <>
               {step === 1 ? (
-                <DialogBackStep />
+                <DialogButtonGoToBack />
               ) : (
                 <Button onClick={goToBackStep} variant='contained'>
                   Назад

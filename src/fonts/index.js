@@ -45,8 +45,10 @@ export const theme = createTheme({
   },
   palette: {
     secondary: {
-      // This is green.A700 as hex.
       main: '#ff9800',
+    },
+    success: {
+      main: '#4caf50',
     },
   },
 })

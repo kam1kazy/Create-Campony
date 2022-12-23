@@ -112,78 +112,76 @@ export default function SelectCategories({ label, data }) {
   }
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, maxWidth: 470 }} fullWidth={true}>
-        <InputLabel id='multiple-chip-label'>{label}</InputLabel>
-        <Select
-          labelId='multiple-chip-label'
-          id='multiple-chip-products'
-          multiple
-          MenuProps={MenuProps}
-          value={groupName}
-          input={<OutlinedInput id='select-multiple-chip' label={label} />}
-          renderValue={(selected) => (
-            <>
-              <Box ref={chipTags}>
-                {selected.map((value, index) => {
-                  if (index < 3) {
-                    return (
-                      <Chip
-                        key={value}
-                        label={value}
-                        sx={{ zIndex: '1', margin: '0 2px' }}
-                        deleteIcon={
-                          <CancelIcon
-                            onMouseDown={(event) => event.stopPropagation()}
-                          />
-                        }
-                        onDelete={() => handleDeleteCategory(value)}
-                      />
-                    )
-                  }
-                })}
-              </Box>
+    <FormControl margin='dense' sx={{ maxWidth: 470 }} fullWidth={true}>
+      <InputLabel id='multiple-chip-label'>{label}</InputLabel>
+      <Select
+        labelId='multiple-chip-label'
+        id='multiple-chip-products'
+        multiple
+        MenuProps={MenuProps}
+        value={groupName}
+        input={<OutlinedInput id='select-multiple-chip' label={label} />}
+        renderValue={(selected) => (
+          <>
+            <Box ref={chipTags}>
+              {selected.map((value, index) => {
+                if (index < 3) {
+                  return (
+                    <Chip
+                      key={value}
+                      label={value}
+                      sx={{ zIndex: '1', margin: '0 2px' }}
+                      deleteIcon={
+                        <CancelIcon
+                          onMouseDown={(event) => event.stopPropagation()}
+                        />
+                      }
+                      onDelete={() => handleDeleteCategory(value)}
+                    />
+                  )
+                }
+              })}
+            </Box>
 
-              {(selectedCategories.length > 3) & (chipTags.current !== null) ? (
-                <ChipTagsCircle
-                  chipTags={chipTags}
-                  selectedList={selectedCategories}
-                />
-              ) : null}
-            </>
-          )}
-        >
-          <Box>
-            <MenuItem
-              sx={{
-                justifyContent: 'center',
-                fontSize: '14px',
-                opacity: '.6',
-              }}
-              onClick={handleResetCategory}
-            >
-              {selectedCategories.length > 0
-                ? '-- Удалить всё --'
-                : '-- Добавить всё --'}
-            </MenuItem>
-            {data.map((item) => {
-              return (
-                <MenuItem
-                  key={item.id}
-                  onClick={() => handleSelectedCategory(item)}
-                  value={item.name}
-                  style={getStyles(item.name, groupName, theme)}
-                >
-                  {selectedCategories.includes(item) ? (
-                    <CheckRoundedIcon sx={{ pr: 1 }} />
-                  ) : null}
-                  {item.name}
-                </MenuItem>
-              )
-            })}
-          </Box>
-        </Select>
-      </FormControl>
-    </div>
+            {(selectedCategories.length > 3) & (chipTags.current !== null) ? (
+              <ChipTagsCircle
+                chipTags={chipTags}
+                selectedList={selectedCategories}
+              />
+            ) : null}
+          </>
+        )}
+      >
+        <Box>
+          <MenuItem
+            sx={{
+              justifyContent: 'center',
+              fontSize: '14px',
+              opacity: '.6',
+            }}
+            onClick={handleResetCategory}
+          >
+            {selectedCategories.length > 0
+              ? '-- Удалить всё --'
+              : '-- Добавить всё --'}
+          </MenuItem>
+          {data.map((item) => {
+            return (
+              <MenuItem
+                key={item.id}
+                onClick={() => handleSelectedCategory(item)}
+                value={item.name}
+                style={getStyles(item.name, groupName, theme)}
+              >
+                {selectedCategories.includes(item) ? (
+                  <CheckRoundedIcon sx={{ pr: 1 }} />
+                ) : null}
+                {item.name}
+              </MenuItem>
+            )
+          })}
+        </Box>
+      </Select>
+    </FormControl>
   )
 }

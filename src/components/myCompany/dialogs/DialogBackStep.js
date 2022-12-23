@@ -22,7 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />
 })
 
-export default function DialogBackStep() {
+export default function DialogButtonGoToBack() {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
@@ -37,10 +37,10 @@ export default function DialogBackStep() {
   const backToFirstStep = () => {
     dispatch(backStep())
 
-    dispatch(resetCategories())
-    dispatch(resetProducts())
-    dispatch(resetNomenclatura())
-    dispatch(resetName())
+    // dispatch(resetCategories())
+    // dispatch(resetProducts())
+    // dispatch(resetNomenclatura())
+    // dispatch(resetName())
   }
 
   return (
@@ -60,8 +60,9 @@ export default function DialogBackStep() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-slide-description'>
-            Внимание! Покинув эту страницу вы потеряете все данные!
+            Сохранить внесенные изменения?
             <Box
+              component='span'
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -70,7 +71,7 @@ export default function DialogBackStep() {
               }}
             >
               <Button onClick={backToFirstStep} variant='outlined'>
-                Назад
+                Ок
               </Button>
               <Button onClick={handleClose} variant='contained'>
                 Остаться

@@ -115,7 +115,7 @@ export default function SelectProducts({ label, helperText }) {
   }, [selectedCategories])
 
   return (
-    <FormControl sx={{ m: 1, maxWidth: 470 }} fullWidth={true}>
+    <FormControl margin='dense' sx={{ maxWidth: 470 }} fullWidth={true}>
       <InputLabel id='multiple-chip-label'>{label}</InputLabel>
       <Select
         labelId='multiple-chip-label'

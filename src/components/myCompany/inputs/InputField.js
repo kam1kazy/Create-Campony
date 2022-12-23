@@ -34,7 +34,7 @@ export default function InputField({ name, label, type }) {
       onChange={handleCheckInput}
       error={emptyInput ? true : false}
       sx={{ width: 300 }}
-      helperText={emptyInput ? 'Пожалуйста, введите название компании' : ' '}
+      helperText={emptyInput ? 'Дайте название новой кампании' : ' '}
     />
   )
 }

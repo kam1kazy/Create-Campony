@@ -46,7 +46,7 @@ export default function StepOne() {
             Дайте название новой компании
           </Typography>
 
-          <InputField name='nameCompany' label='Компания' type='text' />
+          <InputField name='nameCompany' label='Компании' type='text' />
 
           <Typography variant='h5' component='p' sx={{ mb: 2, mt: 7 }}>
             Выберите способ загрузки предметов

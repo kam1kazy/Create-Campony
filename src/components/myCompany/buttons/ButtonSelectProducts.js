@@ -3,6 +3,7 @@ import { Button, Stack } from '@mui/material'
 
 import { useDispatch } from 'react-redux'
 import { nextStep } from '../../../redux/slice/stepCountSlice'
+import { resetNomenclatura } from '../../../redux/slice/nomenclaturaSlice'
 
 export default function ButtonSelectProducts({
   name,
@@ -13,6 +14,7 @@ export default function ButtonSelectProducts({
 
   // Next step
   const handleNextStep = () => {
+    dispatch(resetNomenclatura())
     dispatch(nextStep())
   }
 
