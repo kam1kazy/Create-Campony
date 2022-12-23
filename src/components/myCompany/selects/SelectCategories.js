@@ -130,7 +130,7 @@ export default function SelectCategories({ label, data }) {
                     <Chip
                       key={value}
                       label={value}
-                      sx={{ zIndex: '1', margin: '0 2px' }}
+                      sx={{ zIndex: '2', margin: '0 2px' }}
                       deleteIcon={
                         <CancelIcon
                           onMouseDown={(event) => event.stopPropagation()}

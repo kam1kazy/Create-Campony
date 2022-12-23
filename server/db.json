@@ -7,7 +7,7 @@
       "products": [
         {
           "id": 1,
-          "categoriesId": 1,
+          "categoriesId": 1, 
           "active": false,
           "categories": "Шапки",
           "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",

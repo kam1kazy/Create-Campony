@@ -35,7 +35,7 @@ const productsSlice = createSlice({
     },
     deleteChipProducts(state, action) {
       state.goodsSelected = state.goodsSelected.filter(
-        (item) => item.categories !== action.payload.name
+        (item) => item.name !== action.payload.name
       )
     },
     resetProducts(state) {
