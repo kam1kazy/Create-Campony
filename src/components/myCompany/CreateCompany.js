@@ -1,20 +1,23 @@
 import React, { Children } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nextStep, lastStep } from '../../redux/slice/stepCountSlice'
 import { Formik, Form } from 'formik'
 
 import { Button, Box, Stepper, Step, StepLabel } from '@mui/material'
+// SELECTORS
+import { selectedProductsSelector } from '../../redux/selectors'
 
 // Slices
 import { resetCategories } from '../../redux/slice/selectedCategories'
 import { resetProducts } from '../../redux/slice/productsSlice'
 import { resetNomenclatura } from '../../redux/slice/nomenclaturaSlice'
 import { resetName } from '../../redux/slice/companyNameSlice'
+import { nextStep, backStep } from '../../redux/slice/stepCountSlice'
 
 // Components
 import StepOne from './steps/StepOne'
 import StepTwo from './steps/StepTwo'
 import StepThree from './steps/StepThree'
+import DialogBackStep from './dialogs/DialogBackStep'
 
 export default function CreateCompany() {
   return (
@@ -48,6 +51,7 @@ export default function CreateCompany() {
 
 export function FormikStepper({ children, ...props }) {
   const dispatch = useDispatch()
+  const selectedProductList = useSelector(selectedProductsSelector)
 
   const childrenArray = Children.toArray(children)
   const step = useSelector((state) => state.stepCountReducer.step)
@@ -57,8 +61,8 @@ export function FormikStepper({ children, ...props }) {
     return step === childrenArray.length - 1
   }
 
-  const backStep = () => {
-    dispatch(lastStep())
+  const goToBackStep = () => {
+    dispatch(backStep())
     if (step === 1) {
       dispatch(resetCategories())
       dispatch(resetProducts())
@@ -102,11 +106,20 @@ export function FormikStepper({ children, ...props }) {
         >
           {step > 0 ? (
             <>
-              <Button onClick={backStep} variant='contained'>
-                Назад
-              </Button>
+              {step === 1 ? (
+                <DialogBackStep />
+              ) : (
+                <Button onClick={goToBackStep} variant='contained'>
+                  Назад
+                </Button>
+              )}
+
               {!isLastStep() ? (
-                <Button type='submit' variant='contained'>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  disabled={selectedProductList.length > 0 ? false : true}
+                >
                   Дальше
                 </Button>
               ) : null}

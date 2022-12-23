@@ -9,12 +9,12 @@ const stepCountSlice = createSlice({
     nextStep(state, action) {
       state.step = state.step + 1
     },
-    lastStep(state, action) {
+    backStep(state, action) {
       state.step = state.step - 1
     },
   },
 })
 
-export const { nextStep, lastStep } = stepCountSlice.actions
+export const { nextStep, backStep } = stepCountSlice.actions
 
 export default stepCountSlice.reducer

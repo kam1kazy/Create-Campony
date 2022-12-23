@@ -1,5 +1,9 @@
+import React, { useRef } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
+
+import ChipTagsCircle from './chips/ChipTagsCircle'
+
 import {
   Box,
   OutlinedInput,
@@ -54,6 +58,7 @@ function getStyles(name, groupName) {
 export default function SelectCategories({ label, data }) {
   const theme = useTheme()
   const dispatch = useDispatch()
+  const chipTags = useRef(null)
 
   // USE SELECTOR
   const selectedProductList = useSelector(selectedProductsSelector)
@@ -108,32 +113,45 @@ export default function SelectCategories({ label, data }) {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
+      <FormControl sx={{ m: 1, maxWidth: 470 }} fullWidth={true}>
         <InputLabel id='multiple-chip-label'>{label}</InputLabel>
         <Select
           labelId='multiple-chip-label'
           id='multiple-chip-products'
           multiple
+          MenuProps={MenuProps}
           value={groupName}
           input={<OutlinedInput id='select-multiple-chip' label={label} />}
           renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip
-                  key={value}
-                  label={value}
-                  sx={{ zIndex: '1' }}
-                  deleteIcon={
-                    <CancelIcon
-                      onMouseDown={(event) => event.stopPropagation()}
-                    />
+            <>
+              <Box ref={chipTags}>
+                {selected.map((value, index) => {
+                  if (index < 3) {
+                    return (
+                      <Chip
+                        key={value}
+                        label={value}
+                        sx={{ zIndex: '1', margin: '0 2px' }}
+                        deleteIcon={
+                          <CancelIcon
+                            onMouseDown={(event) => event.stopPropagation()}
+                          />
+                        }
+                        onDelete={() => handleDeleteCategory(value)}
+                      />
+                    )
                   }
-                  onDelete={() => handleDeleteCategory(value)}
+                })}
+              </Box>
+
+              {(selectedCategories.length > 3) & (chipTags.current !== null) ? (
+                <ChipTagsCircle
+                  chipTags={chipTags}
+                  selectedList={selectedCategories}
                 />
-              ))}
-            </Box>
+              ) : null}
+            </>
           )}
-          MenuProps={MenuProps}
         >
           <Box>
             <MenuItem

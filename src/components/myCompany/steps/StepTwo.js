@@ -11,7 +11,7 @@ import ProductList from '../ProductcList'
 import SelectCategories from '../selects/SelectCategories'
 import SelectProducts from '../selects/SelectProducts'
 import ButtonUploadExcelFile from '../buttons/ButtonUploadExcelFile'
-import SearchInput from '../inputs/SearchInput'
+// import SearchInput from '../inputs/SearchInput'
 
 // Selectors
 import {

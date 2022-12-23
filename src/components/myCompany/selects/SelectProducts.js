@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 
+import ChipTagsCircle from './chips/ChipTagsCircle'
+
 // SLICES
 import {
   addProduct,
@@ -30,8 +32,6 @@ import {
   ListSubheader,
   CardMedia,
   Typography,
-  Autocomplete,
-  TextField,
 } from '@mui/material'
 
 // ICONS
@@ -59,6 +59,7 @@ function getStyles(name, groupName) {
 export default function SelectProducts({ label, helperText }) {
   const theme = useTheme()
   const dispatch = useDispatch()
+  const chipTags = useRef(null)
 
   // USE SELECTOR
   const selectedProductList = useSelector(selectedProductsSelector)
@@ -113,11 +114,8 @@ export default function SelectProducts({ label, helperText }) {
     })
   }, [selectedCategories])
 
-  const chipTags = useRef(null)
-  console.log(chipTags.current.length)
-
   return (
-    <FormControl sx={{ m: 1, maxWidth: 450 }} fullWidth={true}>
+    <FormControl sx={{ m: 1, maxWidth: 470 }} fullWidth={true}>
       <InputLabel id='multiple-chip-label'>{label}</InputLabel>
       <Select
         labelId='multiple-chip-label'
@@ -128,24 +126,34 @@ export default function SelectProducts({ label, helperText }) {
         MenuProps={MenuProps}
         disabled={selectedCategories.length === 0 ? true : false}
         renderValue={(selected) => (
-          <Box
-            ref={chipTags}
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}
-          >
-            {groupName.map((value) => (
-              <Chip
-                key={value}
-                label={value}
-                sx={{ zIndex: '1' }}
-                deleteIcon={
-                  <CancelIcon
-                    onMouseDown={(event) => event.stopPropagation()}
-                  />
+          <>
+            <Box ref={chipTags}>
+              {groupName.map((value, index) => {
+                if (index < 3) {
+                  return (
+                    <Chip
+                      key={value}
+                      label={value}
+                      sx={{ zIndex: '1', margin: '0 2px' }}
+                      deleteIcon={
+                        <CancelIcon
+                          onMouseDown={(event) => event.stopPropagation()}
+                        />
+                      }
+                      onDelete={() => handleDeleteChip(value)}
+                    />
+                  )
                 }
-                onDelete={() => handleDeleteChip(value)}
+              })}
+            </Box>
+
+            {(selectedProductList.length > 3) & (chipTags.current !== null) ? (
+              <ChipTagsCircle
+                chipTags={chipTags}
+                selectedList={selectedProductList}
               />
-            ))}
-          </Box>
+            ) : null}
+          </>
         )}
       >
         {/* Рендер категорий, внутри них уже рендер продуктов */}

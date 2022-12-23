@@ -7,7 +7,7 @@ const selectedCategoriesSlice = createSlice({
   },
   reducers: {
     addCategories(state, action) {
-      state.categories.push(action.payload.item)
+      state.categories.unshift(action.payload.item)
     },
     toggleActive(state, action) {
       const toggledActive = state.categories.find(

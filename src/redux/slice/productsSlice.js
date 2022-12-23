@@ -8,10 +8,14 @@ const productsSlice = createSlice({
   },
   reducers: {
     addProduct(state, action) {
-      state.goodsSelected.push(action.payload.item)
+      if (state.goodsSelected.length < 50) {
+        state.goodsSelected.unshift(action.payload.item)
+      } else {
+        alert('Добавлено максимальное число товаров!')
+      }
     },
     setProductsList(state, action) {
-      state.goodsList.push(action.payload)
+      state.goodsList.unshift(action.payload)
     },
     toggleSelected(state, action) {
       const toggledSelect = state.products.find(
