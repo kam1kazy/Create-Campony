@@ -1,0 +1,154 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "name": "Шапки",
+      "active": false,
+      "products": [
+        {
+          "id": 1,
+          "categoriesId": 1, 
+          "active": false,
+          "categories": "Шапки",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Шапка 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! шапки 1"
+        },
+        {
+          "id": 2,
+          "categoriesId": 1,
+          "active": false,
+          "categories": "Шапки",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Шапка 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! шапки 1"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Платья",
+      "active": false,
+      "products": [
+        {
+          "id": 3,
+          "categoriesId": 2,
+          "active": false,
+          "categories": "Платья",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Платьe 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! платья 1"
+        },
+        {
+          "id": 4,
+          "categoriesId": 2,
+          "active": false,
+          "categories": "Платья",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Платьe 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! платья 2"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Рюкзаки",
+      "active": false,
+      "products": [
+        {
+          "id": 5,
+          "categoriesId": 3,
+          "active": false,
+          "categories": "Рюкзаки",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Сумка 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! рюкзака 1"
+        },
+        {
+          "id": 6,
+          "categoriesId": 3,
+          "active": false,
+          "categories": "Рюкзаки",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Сумка 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! рюкзака 2"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Обувь",
+      "active": false,
+      "products": [
+        {
+          "id": 7,
+          "categoriesId": 4,
+          "active": false,
+          "categories": "Обувь",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Обувь 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! обуви 1"
+        },
+        {
+          "id": 8,
+          "categoriesId": 4,
+          "active": false,
+          "categories": "Обувь",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Обувь 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! обуви 2"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Аксессуары",
+      "active": false,
+      "products": [
+        {
+          "id": 9,
+          "categoriesId": 5,
+          "active": false,
+          "categories": "Аксессуары",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Аксессуар 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! аксессуара 1"
+        },
+        {
+          "id": 10,
+          "categoriesId": 5,
+          "active": false,
+          "categories": "Аксессуары",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Аксессуар 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! аксессуара 1"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Верхняя одежда",
+      "active": false,
+      "products": [
+        {
+          "id": 11,
+          "categoriesId": 6,
+          "active": false,
+          "categories": "Верхняя одежда",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Одежда 1",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! верхней одежды 1"
+        },
+        {
+          "id": 12,
+          "categoriesId": 6,
+          "active": false,
+          "categories": "Верхняя одежда",
+          "image": "https://i.pinimg.com/originals/1a/ba/5d/1aba5df01d99464aaea02b15514b0f58.jpg",
+          "name": "Одежда 2",
+          "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, consequuntur repudiandae sit laborum nihil possimus! верхней одежды 2"
+        }
+      ]
+    }
+  ]
+}
