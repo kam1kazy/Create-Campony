@@ -6,10 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // Slices
 import { nextStep } from '../../../redux/slice/stepCountSlice'
 import { resetNomenclatura } from '../../../redux/slice/nomenclaturaSlice'
-import {
-  resetProductsList,
-  resetProducts,
-} from '../../../redux/slice/productsSlice'
+import { resetProducts } from '../../../redux/slice/productsSlice'
 import { resetCategories } from '../../../redux/slice/selectedCategories'
 
 // Selectors
@@ -34,7 +31,7 @@ export default function ButtonSelectProducts({
   }
 
   return (
-    <Stack direction='row' spacing={2} sx={{ mt: 2, mb: 5, mr: 1 }}>
+    <Stack direction='row' spacing={2} sx={{ mb: 5, mr: 1 }}>
       <Button
         variant='outlined'
         disabled={disabled}

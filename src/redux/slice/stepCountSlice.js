@@ -6,6 +6,9 @@ const stepCountSlice = createSlice({
     step: 0,
   },
   reducers: {
+    firstStep(state, action) {
+      state.step = 0
+    },
     nextStep(state, action) {
       state.step = state.step + 1
     },
@@ -15,6 +18,6 @@ const stepCountSlice = createSlice({
   },
 })
 
-export const { nextStep, backStep } = stepCountSlice.actions
+export const { nextStep, backStep, firstStep } = stepCountSlice.actions
 
 export default stepCountSlice.reducer

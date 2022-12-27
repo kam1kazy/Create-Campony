@@ -22,7 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />
 })
 
-export default function DialogButtonGoToBack() {
+export default function DialogBackStepButton() {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
@@ -59,8 +59,11 @@ export default function DialogButtonGoToBack() {
           {'Вы хотите покинуть страницу?'}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id='alert-dialog-slide-description'>
-            Сохранить внесенные изменения?
+          <DialogContentText
+            id='alert-dialog-slide-description'
+            sx={{ textAlign: 'center', mt: 2 }}
+          >
+            Изменения будут сохранены
             <Box
               component='span'
               sx={{

@@ -48,7 +48,7 @@ export default function ButtonUploadExcelFile({ name, disabled, size }) {
   }
 
   return (
-    <Stack direction='row' spacing={2} sx={{ mt: 2, mb: 5, mr: 2 }}>
+    <Stack direction='row' spacing={2} sx={{ mb: 5, mr: 2 }}>
       <input
         color='primary'
         type='file'

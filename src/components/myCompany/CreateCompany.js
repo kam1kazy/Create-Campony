@@ -3,21 +3,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
 
 import { Button, Box, Stepper, Step, StepLabel } from '@mui/material'
+
 // SELECTORS
 import { selectedProductsSelector } from '../../redux/selectors'
 
 // Slices
-import { resetCategories } from '../../redux/slice/selectedCategories'
-import { resetProducts } from '../../redux/slice/productsSlice'
-import { resetNomenclatura } from '../../redux/slice/nomenclaturaSlice'
-import { resetName } from '../../redux/slice/companyNameSlice'
 import { nextStep, backStep } from '../../redux/slice/stepCountSlice'
 
 // Components
 import StepOne from './steps/StepOne'
 import StepTwo from './steps/StepTwo'
 import StepThree from './steps/StepThree'
-import DialogButtonGoToBack from './dialogs/DialogBackStep'
+import DialogBackStepButton from './dialogs/DialogBackStepButton'
 
 export default function CreateCompany() {
   return (
@@ -63,13 +60,6 @@ export function FormikStepper({ children, ...props }) {
 
   const goToBackStep = () => {
     dispatch(backStep())
-
-    if (step === 1) {
-      // dispatch(resetCategories())
-      // dispatch(resetProducts())
-      // dispatch(resetNomenclatura())
-      // dispatch(resetName())
-    }
   }
 
   return (
@@ -129,7 +119,7 @@ export function FormikStepper({ children, ...props }) {
           {step > 0 ? (
             <>
               {step === 1 ? (
-                <DialogButtonGoToBack />
+                <DialogBackStepButton />
               ) : (
                 <Button onClick={goToBackStep} variant='contained'>
                   Назад
