@@ -32,6 +32,8 @@ export default function ButtonUploadExcelFile({ name, disabled, size }) {
 
         if (step === 0) {
           dispatch(setNomenclatura(jsonFilter))
+          dispatch(resetCategories())
+          dispatch(resetProducts())
           dispatch(nextStep())
         } else {
           dispatch(resetCategories())

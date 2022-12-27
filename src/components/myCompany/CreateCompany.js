@@ -32,12 +32,12 @@ export default function CreateCompany() {
       onSubmit={() => {}}
     >
       {/* Шаг первый */}
-      <Box label='Создание компании'>
+      <Box label='Ваша компания'>
         <StepOne />
       </Box>
 
       {/* Шаг второй */}
-      <Box label='Выбор товаров'>
+      <Box label='Ассортимент'>
         <StepTwo />
       </Box>
 

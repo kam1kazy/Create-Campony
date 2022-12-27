@@ -1,9 +1,19 @@
 import React from 'react'
 import { Button, Stack } from '@mui/material'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
+// Slices
 import { nextStep } from '../../../redux/slice/stepCountSlice'
 import { resetNomenclatura } from '../../../redux/slice/nomenclaturaSlice'
+import {
+  resetProductsList,
+  resetProducts,
+} from '../../../redux/slice/productsSlice'
+import { resetCategories } from '../../../redux/slice/selectedCategories'
+
+// Selectors
+import { nomenclaturaSelector } from '../../../redux/selectors'
 
 export default function ButtonSelectProducts({
   name,
@@ -11,10 +21,15 @@ export default function ButtonSelectProducts({
   nextStepActive,
 }) {
   const dispatch = useDispatch()
+  const nomenclatura = useSelector(nomenclaturaSelector)
 
   // Next step
   const handleNextStep = () => {
-    dispatch(resetNomenclatura())
+    if (nomenclatura.length > 0) {
+      dispatch(resetNomenclatura())
+      dispatch(resetProducts())
+      dispatch(resetCategories())
+    }
     dispatch(nextStep())
   }
 

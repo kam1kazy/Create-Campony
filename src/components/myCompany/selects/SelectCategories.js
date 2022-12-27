@@ -32,7 +32,6 @@ import {
 } from '../../../redux/slice/selectedCategories'
 import {
   removeProduct,
-  deleteChipProducts,
   resetProducts,
 } from '../../../redux/slice/productsSlice'
 
@@ -84,7 +83,12 @@ export default function SelectCategories({ label, data }) {
   // Delete Chips Categories
   const handleDeleteCategory = (name) => {
     dispatch(deleteChipCategory({ name }))
-    dispatch(deleteChipProducts({ name }))
+
+    selectedProductList.filter((item) => {
+      if (item.categories === name) {
+        dispatch(removeProduct(item))
+      }
+    })
   }
 
   // Reset categories and products
