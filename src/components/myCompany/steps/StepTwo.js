@@ -13,6 +13,8 @@ import SelectProducts from '../selects/SelectProducts'
 import ButtonUploadExcelFile from '../buttons/ButtonUploadExcelFile'
 // import SearchInput from '../inputs/SearchInput'
 
+import LoopIcon from '@mui/icons-material/Loop'
+
 // Selectors
 import {
   selectedProductsSelector,
@@ -30,9 +32,6 @@ export default function StepTwo() {
   const selectedCategories = useSelector(selectedCategoriesSelector)
   const selectedProductList = useSelector(selectedProductsSelector)
   const nomenclatura = useSelector(nomenclaturaSelector)
-
-  if (isLoading)
-    return <Typography component='p'>Загрузка товаров...</Typography>
 
   // Если была загружена номенклатура, то отфильтровать data
   const nomenclaturaGoods = data
@@ -62,10 +61,29 @@ export default function StepTwo() {
 
           {/* В зависимости - была ли загружена номенклатура, мы выбираем какие категории отобразить */}
           {/* Data - всю базу, nomenclaturaGoods - отфильтрованный список по загруженной номенклатуре */}
-          <SelectCategories
-            data={nomenclatura.length > 0 ? nomenclaturaGoods : data}
-            label='Группы предметов'
-          />
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <SelectCategories
+              data={nomenclatura.length > 0 ? nomenclaturaGoods : data}
+              label={isLoading ? 'Загрузка...' : 'Группы предметов'}
+            />
+
+            {isLoading ? (
+              <LoopIcon
+                sx={{
+                  ml: 1,
+                  animation: 'spin 2s linear infinite',
+                  '@keyframes spin': {
+                    '0%': {
+                      transform: 'rotate(360deg)',
+                    },
+                    '100%': {
+                      transform: 'rotate(0deg)',
+                    },
+                  },
+                }}
+              />
+            ) : null}
+          </Box>
 
           <Typography variant='h5' component='p' sx={{ mb: 2, mt: 4 }}>
             Выберите предметы из группы

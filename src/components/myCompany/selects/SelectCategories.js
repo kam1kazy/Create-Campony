@@ -54,7 +54,7 @@ function getStyles(name, groupName) {
   }
 }
 
-export default function SelectCategories({ label, data }) {
+export default function SelectCategories({ label, data, disabled }) {
   const theme = useTheme()
   const dispatch = useDispatch()
   const chipTags = useRef(null)
@@ -122,6 +122,7 @@ export default function SelectCategories({ label, data }) {
         labelId='multiple-chip-label'
         id='multiple-chip-products'
         multiple
+        disabled={disabled}
         MenuProps={MenuProps}
         value={groupName}
         input={<OutlinedInput id='select-multiple-chip' label={label} />}
