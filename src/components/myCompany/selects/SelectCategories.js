@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -21,6 +21,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 import {
   selectedProductsSelector,
   selectedCategoriesSelector,
+  productListSelector,
 } from '../../../redux/selectors'
 
 // Slices
@@ -32,7 +33,10 @@ import {
 } from '../../../redux/slice/selectedCategories'
 import {
   removeProduct,
+  removeProductList,
+  setProductsList,
   resetProducts,
+  resetProductsList,
 } from '../../../redux/slice/productsSlice'
 
 // Стили выпадающего списка
@@ -62,6 +66,7 @@ export default function SelectCategories({ label, data, disabled }) {
   // USE SELECTOR
   const selectedProductList = useSelector(selectedProductsSelector)
   const selectedCategories = useSelector(selectedCategoriesSelector)
+  const productsList = useSelector(productListSelector)
 
   const groupName = selectedCategories.map((item) => item.name)
 
@@ -69,17 +74,33 @@ export default function SelectCategories({ label, data, disabled }) {
   const handleSelectedCategory = (item) => {
     if (!selectedCategories.includes(item)) {
       dispatch(addCategories({ item }))
+      hadleAddToReducer(item)
     } else {
       dispatch(removeCategories({ item }))
-
-      item.products.forEach(function (product, i) {
-        if (selectedProductList.includes(product)) {
-          dispatch(removeProduct(product))
-        }
-      })
+      handleDeleteFromReducer(item)
     }
   }
 
+  const handleDeleteFromReducer = (item) => {
+    // Удаляет продукты из "productsList" и "selectedProductList" вместе с категорией
+    item.products.forEach(function (product, i) {
+      if (selectedProductList.includes(product)) {
+        dispatch(removeProduct(product))
+      }
+      if (productsList.includes(product)) {
+        dispatch(removeProductList(product.name))
+      }
+    })
+  }
+
+  const hadleAddToReducer = (item) => {
+    // Добавляет список продуктов из категории в reducer "productsList"
+    item.products.forEach((item) => {
+      if (!productsList.includes(item)) {
+        dispatch(setProductsList(item))
+      }
+    })
+  }
   // Delete Chips Categories
   const handleDeleteCategory = (name) => {
     dispatch(deleteChipCategory({ name }))
@@ -89,6 +110,12 @@ export default function SelectCategories({ label, data, disabled }) {
         dispatch(removeProduct(item))
       }
     })
+
+    productsList.filter((item) => {
+      if (item.categories === name) {
+        dispatch(removeProductList(item.name))
+      }
+    })
   }
 
   // Reset categories and products
@@ -96,21 +123,12 @@ export default function SelectCategories({ label, data, disabled }) {
     if (selectedCategories.length > 0) {
       dispatch(resetCategories())
       dispatch(resetProducts())
+      dispatch(resetProductsList())
     } else {
-      let count = 0
-
+      // Проходимся по категориям
       data.forEach(function (item, i, arr) {
-        if (data.includes(item)) {
-          dispatch(addCategories({ item }))
-        } else {
-          count = count + 1
-
-          if (arr.length === count) {
-            arr.forEach(function (item, i) {
-              dispatch(removeCategories(item))
-            })
-          }
-        }
+        dispatch(addCategories({ item }))
+        hadleAddToReducer(item)
       })
     }
   }

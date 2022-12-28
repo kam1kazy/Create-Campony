@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Brightness1RoundedIcon from '@mui/icons-material/Brightness1Rounded'
 import { Box } from '@mui/material'
 
-export default function ChipTagsCircle({ chipTags, selectedList }) {
+export default function ChipTagsCircle({ selectedList }) {
   const [chipTagsActive, setToggleTagsActive] = useState(selectedList.length)
 
   useEffect(() => {

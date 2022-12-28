@@ -1,30 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { Autocomplete, TextField } from '@mui/material'
+import { Autocomplete, TextField, Box, Chip } from '@mui/material'
 import { styled } from '@mui/system'
+
+import ChipTagsCircle from '../selects/chips/ChipTagsCircle'
 
 // SELECTORS
 import {
   productListSelector,
   selectedCategoriesSelector,
   selectedProductsSelector,
+  getDeleteProductId,
 } from '../../../redux/selectors'
 
 // SLICES
 import {
   addProduct,
   removeProduct,
-  deleteChipProducts,
-  setProductsList,
   removeGroupSelectedProduct,
+  setProductsSelectedList,
 } from '../../../redux/slice/productsSlice'
+
+// ICONS
+import CancelIcon from '@mui/icons-material/Cancel'
 
 export default function SearchInput() {
   const dispatch = useDispatch()
+  const chipTags = useRef(null)
+  const deleteRef = useRef(null)
+
   // USE SELECTOR
   const selectedProductList = useSelector(selectedProductsSelector)
-  const selectedCategories = useSelector(selectedCategoriesSelector)
   const productsList = useSelector(productListSelector)
 
   // Стили для группировки списка
@@ -49,7 +56,6 @@ export default function SearchInput() {
     categories.children.forEach(function (item, i, arr) {
       let product = productsList.find((product) => product.name === item.key)
 
-      console.log(arr)
       if (!selectedProductList.includes(product)) {
         dispatch(addProduct({ product }))
       } else {
@@ -65,57 +71,84 @@ export default function SearchInput() {
   }
 
   // Delete / Selected product
-  const handleSelectProduct = (item) => {
-    if (!selectedProductList.includes(item)) {
-      dispatch(addProduct({ item }))
-    } else {
-      dispatch(removeProduct(item))
-    }
+  const setSelectProducts = (_, value, __) => {
+    dispatch(setProductsSelectedList(value))
   }
 
   // Delete Chips Categories
-  const handleDeleteChip = (name) => {
-    dispatch(deleteChipProducts({ name }))
+  const deleteSelectProducts = (value, tagProps) => {
+    const deleteFnRefObj = {}
+    value.forEach((tag, index) => {
+      deleteFnRefObj[index] = tagProps({ index }).onDelete
+    })
+
+    deleteRef.current = deleteFnRefObj
+
+    return selectedProductList.map((product) => {
+      return (
+        <Chip
+          key={product.name}
+          label={product.name}
+          sx={{ zIndex: '2', margin: '0 2px' }}
+          deleteIcon={
+            <CancelIcon onMouseDown={(event) => event.stopPropagation()} />
+          }
+          onDelete={() => handleDeleteItem(product)}
+        />
+      )
+    })
   }
 
-  // Когда меняется список выбранных категорий, добавляет все товары из этих категорий в глобальное состояние
-  useEffect(() => {
-    selectedCategories.forEach((cat) => {
-      cat.products.forEach((item) => {
-        if (!productsList.includes(item)) {
-          dispatch(setProductsList(item))
-        }
-      })
-    })
-  }, [selectedCategories])
+  // Delete selected product
+  const handleDeleteItem = (product) => {
+    console.log(product)
+
+    const id = selectedProductList.findIndex((e) => e.name === product.name)
+
+    console.log('id: ' + id)
+
+    deleteRef.current[id]()
+
+    if (!selectedProductList.includes(product.id)) {
+      dispatch(removeProduct(product))
+    }
+  }
 
   return (
-    <Autocomplete
-      multiple
-      disableCloseOnSelect
-      limitTags={2}
-      id='tags-standard'
-      options={productsList}
-      groupBy={(product) => product.categories}
-      getOptionLabel={(product) => product.name}
-      renderInput={(products) => (
-        <TextField {...products} label='Предметы' placeholder='Поиск...' />
-      )}
-      renderGroup={(categories) => {
-        return (
-          <li key={categories.key}>
-            <GroupHeader
-              onClick={() => selectedAllCategory(categories)}
-              sx={{ display: 'flex', justifyContent: 'space-between' }}
-            >
-              <div>{categories.group}</div>
-              <div>Добавить всё</div>
-            </GroupHeader>
+    <Box sx={{ position: 'relative' }}>
+      <Autocomplete
+        ref={chipTags}
+        multiple
+        disableClearable
+        disableCloseOnSelect
+        id='tags-standard'
+        options={productsList}
+        onChange={setSelectProducts}
+        renderTags={deleteSelectProducts}
+        groupBy={(product) => product.categories}
+        getOptionLabel={(product) => product.name}
+        renderInput={(products) => (
+          <TextField {...products} label='Предметы' placeholder='Поиск...' />
+        )}
+        renderGroup={(categories) => {
+          return (
+            <li key={categories.key}>
+              <GroupHeader
+                onClick={() => selectedAllCategory(categories)}
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <div>{categories.group}</div>
+                <div>Добавить всё</div>
+              </GroupHeader>
 
-            <GroupItems>{categories.children}</GroupItems>
-          </li>
-        )
-      }}
-    />
+              <GroupItems>{categories.children}</GroupItems>
+            </li>
+          )
+        }}
+      />
+      {(selectedProductList.length > 3) & (chipTags.current !== null) ? (
+        <ChipTagsCircle selectedList={selectedProductList} />
+      ) : null}
+    </Box>
   )
 }

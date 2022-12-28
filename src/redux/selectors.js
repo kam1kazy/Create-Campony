@@ -6,3 +6,4 @@ export const selectedCategoriesSelector = (state) =>
   state.selectedCategoriesReducer.categories
 export const nomenclaturaSelector = (state) => state.nomenclaturaReducer.array
 export const stepCountSelector = (state) => state.stepCountReducer.step
+export const getDeleteProductId = (state) => state.productsReducer.toggleDelId

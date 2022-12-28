@@ -17,11 +17,19 @@ const productsSlice = createSlice({
     setProductsList(state, action) {
       state.goodsList.unshift(action.payload)
     },
+    setProductsSelectedList(state, action) {
+      state.goodsSelected = action.payload
+    },
     toggleSelected(state, action) {
       const toggledSelect = state.products.find(
         (item) => item.id === action.payload.item.id
       )
       toggledSelect.active = !toggledSelect.active
+    },
+    removeProductList(state, action) {
+      state.goodsList = state.goodsList.filter(
+        (item) => item.name !== action.payload
+      )
     },
     removeGroupSelectedProduct(state, action) {
       state.goodsSelected = state.goodsSelected.filter(
@@ -55,7 +63,9 @@ export const {
   resetProducts,
   setProductsList,
   resetProductsList,
+  removeProductList,
   removeGroupSelectedProduct,
+  setProductsSelectedList,
 } = productsSlice.actions
 
 export default productsSlice.reducer
