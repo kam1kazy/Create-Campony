@@ -89,14 +89,14 @@ export default function StepTwo() {
             Выберите предметы из группы
           </Typography>
 
-          {/* <SearchInput /> */}
+          <SearchInput />
 
-          <SelectProducts
+          {/* <SelectProducts
             helperText
             label={
               !selectedCategories.length ? 'Сначала выберите группу' : 'Предмет'
             }
-          />
+          /> */}
 
           <Typography variant='h5' component='p' sx={{ mb: 4, mt: 4 }}>
             {selectedProductList.length > 0 ? (

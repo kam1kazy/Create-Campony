@@ -11,7 +11,10 @@ import {
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { removeProduct } from '../../redux/slice/productsSlice'
+import {
+  removeProduct,
+  setDeleteProductRef,
+} from '../../redux/slice/productsSlice'
 
 // Selectors
 import {
@@ -28,9 +31,11 @@ export default function selectedProductList() {
 
   // Delete selected product
   const handleDeleteItem = (product) => {
-    if (!selectedProductList.includes(product.id)) {
-      dispatch(removeProduct(product))
-    }
+    dispatch(setDeleteProductRef(product))
+
+    // if (!selectedProductList.includes(product.id)) {
+    //   dispatch(removeProduct(product))
+    // }
   }
 
   return (

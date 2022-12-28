@@ -24,7 +24,7 @@ export default function ChipTagsCircle({ selectedList }) {
         fontSize: '13px',
       }}
     >
-      +{chipTagsActive}
+      +{chipTagsActive - 3}
       <Brightness1RoundedIcon
         sx={{
           position: 'absolute',
