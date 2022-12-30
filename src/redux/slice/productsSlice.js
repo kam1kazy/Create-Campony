@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const productsSlice = createSlice({
   name: 'Product Data',
   initialState: {
+    clearInputSearch: false,
     deleteProductRef: null,
     goodsSelected: [],
     goodsList: [],
@@ -14,6 +15,9 @@ const productsSlice = createSlice({
       } else {
         alert('Добавлено максимальное число товаров!')
       }
+    },
+    toggleClearInputState(state, action) {
+      state.clearInputSearch = action.payload
     },
     setDeleteProductRef(state, action) {
       state.deleteProductRef = action.payload
@@ -52,6 +56,7 @@ const productsSlice = createSlice({
     },
     resetProducts(state) {
       state.goodsSelected = []
+      state.clearInputSearch = true
     },
     resetProductsList(state) {
       state.goodsList = []
@@ -71,6 +76,7 @@ export const {
   removeGroupSelectedProduct,
   setProductsSelectedList,
   setDeleteProductRef,
+  toggleClearInputState,
 } = productsSlice.actions
 
 export default productsSlice.reducer

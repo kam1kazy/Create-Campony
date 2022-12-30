@@ -31,7 +31,7 @@ export default function StepOne() {
 
   // Проверка название компании, что оно состоит не из одних пробелов
   useEffect(() => {
-    if (companyName.trim().length > 0 && companyName.length > 3) {
+    if (companyName.trim().length > 0 && companyName.length > 2) {
       setToggleActiveButton(false)
     } else {
       setToggleActiveButton(true)

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useGetGoodsQuery } from '../../../redux'
 
 // Slices
-import { resetProducts } from '../../../redux/slice/productsSlice'
+import { toggleClearInputState } from '../../../redux/slice/productsSlice'
 
 // Components
 import ProductList from '../ProductcList'
@@ -107,7 +107,7 @@ export default function StepTwo() {
                 </Typography>
                 <Button
                   variant='outlined'
-                  onClick={() => dispatch(resetProducts())}
+                  onClick={() => dispatch(toggleClearInputState(true))}
                 >
                   Сбросить
                 </Button>

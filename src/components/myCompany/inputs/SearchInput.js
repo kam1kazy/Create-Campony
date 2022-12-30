@@ -19,13 +19,14 @@ import {
   productListSelector,
   selectedProductsSelector,
   getDeleteProductRef,
+  getClearBoolenInputSearch,
 } from '../../../redux/selectors'
 
 // SLICES
 import {
   addProduct,
   removeProduct,
-  removeGroupSelectedProduct,
+  toggleClearInputState,
   setProductsSelectedList,
   setDeleteProductRef,
 } from '../../../redux/slice/productsSlice'
@@ -52,6 +53,7 @@ export default function SearchInput() {
   const selectedProductList = useSelector(selectedProductsSelector)
   const productRef = useSelector(getDeleteProductRef)
   const productsList = useSelector(productListSelector)
+  const toggleClearInputSearch = useSelector(getClearBoolenInputSearch)
 
   // Chips - выбранные категории в Input Select, имя в овальном блоке
   const groupName = selectedProductList.map((item) => item.name)
@@ -134,11 +136,24 @@ export default function SearchInput() {
     }
   }
 
+  // handleToggleClear()
+  console.log(deleteRef.current)
   useEffect(() => {
     if (productRef !== null) {
       handleDeleteItem(productRef)
     }
   }, [productRef])
+
+  useEffect(() => {
+    if (deleteRef.current !== null) {
+      console.log(deleteRef.current)
+
+      selectedProductList.forEach((v, i) => {
+        return deleteRef.current[0]()
+      })
+    }
+    dispatch(toggleClearInputState(false))
+  }, [toggleClearInputSearch])
 
   return (
     <Box sx={{ maxWidth: 470, position: 'relative' }}>

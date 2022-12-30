@@ -8,3 +8,5 @@ export const nomenclaturaSelector = (state) => state.nomenclaturaReducer.array
 export const stepCountSelector = (state) => state.stepCountReducer.step
 export const getDeleteProductRef = (state) =>
   state.productsReducer.deleteProductRef
+export const getClearBoolenInputSearch = (state) =>
+  state.productsReducer.clearInputSearch
